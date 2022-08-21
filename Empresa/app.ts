@@ -1,24 +1,54 @@
-import {Empleado, Cliente, Directivo, Empresa} from "./clases"
+import {Cliente, Directivo, Empleado, Empresa, Persona} from "./clases"
 
 
-const empresa = new Empresa("Telcel C.A")
 
-const gerente001 = new Directivo('Frederick Manos', 57, 'Gerente');
 
-const empleado001 = new Empleado('Wilman Sirit', 55, 750);
-const empleado002 = new Empleado('Victor Sirit', 25, 1030);
-const empleado003 = new Empleado('Lisette Cordero', 54, 35);
+const Telcel = new Empresa("Telcel C.A")
 
+// Crear Personas para que laboren en Telcel
+const persona001 = new Persona('Wilman Sirit', 55);
+const persona002 = new Persona('Victor Sirit', 25,);
+const persona003 = new Persona('Lisette Cordero', 54);
+const persona004 = new Persona('Frederic Manos', 60);
+
+// Contratando personal
+Telcel.agregarEmpleados(persona001);
+Telcel.agregarEmpleados(persona002);
+Telcel.agregarEmpleados(persona003);
+Telcel.agregarEmpleados(persona004);
+
+// Listar y mostrar Empleados;
+let empleadosTelcel: Empleado[] = Telcel.listaEmpleados();
+
+// console.log('\nListado de Empleados')
+// empleadosTelcel.forEach(empleado => console.log(JSON.stringify(empleado)));
+
+// Clientes potenciales
 const cliente001 = new Cliente("Bob Smith", 18, "+6704143678976")
 const cliente002 = new Cliente("Jhon Tane", 18, "+5804143685878")
 const cliente003 = new Cliente("Mary Simpson", 18, "+590412455543")
 
-empresa.agregarDirectivos([gerente001]);
-empresa.agregarEmpleados([empleado001,empleado002,empleado003]);
-empresa.agregarClient([cliente001,cliente002,cliente003]);
-empresa.mostrarOrganizacion();
+// Captando Clientes
+Telcel.agregarClient([cliente001,cliente002,cliente003]);
 
 
-console.log(gerente001.mostrar());
-gerente001.addSubordinado([empleado001,empleado002,empleado003])
-gerente001.mostrarSubordinados();
+// Promoviendo a un Empleado a Gerente
+const FedericManos: Empleado = empleadosTelcel[3];
+Telcel.promoverEmpleado(FedericManos, 'Gerente', 200);
+const directivos:Directivo[] = Telcel.listaDirectivos();
+
+// console.log('\nListado de Directivos')
+// directivos.forEach(directivo => console.log(JSON.stringify(directivo)))
+
+// Asignado Empleados al Gerente Federic Manos
+const wsirit = empleadosTelcel[0];
+const lcordero = empleadosTelcel[2];
+const fmanos = directivos[0]
+
+Telcel.asignarEmpleadoADirectivo(wsirit, fmanos);
+Telcel.asignarEmpleadoADirectivo(lcordero, fmanos);
+
+
+// Mostrando Organizacion
+Telcel.mostrarOrganizacion()
+

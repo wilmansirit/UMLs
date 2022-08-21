@@ -1,19 +1,17 @@
-import {Persona, Empleado} from './index'
+import {Empleado} from './index'
 
-export class Directivo extends Persona {
-    private categoria: string;
+export class Directivo extends Empleado {
+    categoria: string;
     subordinados:Empleado[] = [];
 
-    constructor(nombres:string, edad:number, categoria: string){
-        super(nombres, edad);
+    constructor(nombres:string, edad:number, sueldo:number, categoria:string){
+        super(nombres, edad, sueldo);
         this.categoria = categoria
     }
 
-    addSubordinado(empleado:Empleado[]): void {
-
-        empleado.forEach(subordinado => {
-            this.subordinados.push(subordinado)
-        });
+    agregarSubordinado(empleado:Empleado): void {
+        
+        this.subordinados.push(empleado)
         console.log('Se han agregado correctamente los subordinados:')
        
     }

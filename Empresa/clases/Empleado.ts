@@ -1,7 +1,7 @@
 import {Persona} from './Persona'
 
 export class Empleado extends Persona {
-    private sueldo: number;
+    sueldo: number;
 
     constructor(nombres:string, edad:number, sueldo:number){
         super(nombres, edad)
