@@ -1,50 +1,4 @@
-import { log } from "console";
-
-class Persona {
-
-    nombres: string;
-    edad: number;
-
-    constructor(nombres:string, edad:number){
-        this.nombres = nombres;
-        this.edad = edad
-    }
-
-    mostrar(): string{
-        return `${this.nombres}, Edad: ${this.edad} años.`
-    }
-
-}
-
-class Empleado extends Persona {
-    private sueldo: number;
-
-    constructor(nombres:string, edad:number, sueldo:number){
-        super(nombres, edad)
-        this.sueldo = sueldo;
-    }
-
-    mostrar(): string{
-        return `Empleado: ${this.nombres}, Edad: ${this.edad} años.`
-    }
-
-    calcular_salario_neto(): string {
-        return `Mi sueldo es de ${this.sueldo}`
-    }
-}
-
-class Cliente extends Persona {
-    private telefono_de_contacto: string;
-
-    constructor(nombres:string, edad:number, telefono:string){
-        super(nombres, edad)
-        this.telefono_de_contacto = telefono
-    }
-
-    mostrar(): string {
-        return `Cliente: ${this.nombres}, Teléfono: ${this.telefono_de_contacto}`
-    }
-}
+import {Persona,Empleado, Cliente, Directivo} from "./clases"
 
 class Empresa {
     private nombre:string;
@@ -90,29 +44,8 @@ class Empresa {
 
 }
 
-class Directivo extends Persona {
-    private categoria: string;
-    subordinados:Empleado[] = [];
 
-    constructor(nombres:string, edad:number, categoria: string){
-        super(nombres, edad);
-        this.categoria = categoria
-    }
 
-    addSubordinado(empleado:Empleado[]): void {
-
-        empleado.forEach(subordinado => {
-            this.subordinados.push(subordinado)
-        });
-        console.log('Se han agregado correctamente los subordinados:')
-       
-    }
-
-    mostrarSubordinados(): void {
-        console.log(`Listado de subordinados de ${this.nombres}`)
-        this.subordinados.forEach(item => console.log(JSON.stringify(item)));
-    }
-}
 
 const empresa = new Empresa("Telcel C.A")
 
