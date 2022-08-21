@@ -12,7 +12,6 @@ export class Directivo extends Empleado {
     agregarSubordinado(empleado:Empleado): void {
         
         this.subordinados.push(empleado)
-        console.log('Se han agregado correctamente los subordinados:')
        
     }
 

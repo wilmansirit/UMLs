@@ -36,6 +36,12 @@ export class Empresa {
         })
 
     }
+
+    // Aumentandole de sueldo
+    aumentarSueldo(empleado:Empleado, nuevoSueldo:number): void {
+        empleado.calcular_salario_neto(nuevoSueldo);
+    }
+
     // Asignando personal al directivo
     asignarEmpleadoADirectivo(empleado:Empleado, directivo:Directivo): void {
 

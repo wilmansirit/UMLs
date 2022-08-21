@@ -12,7 +12,8 @@ export class Empleado extends Persona {
         return `Empleado: ${this.nombres}, Edad: ${this.edad} años.`
     }
 
-    calcular_salario_neto(): string {
-        return `Mi sueldo es de ${this.sueldo}`
+    calcular_salario_neto(nuevoSueldo:number): void {
+        this.sueldo = nuevoSueldo;
+        console.log(`\nEl sueldo de ${this.nombres} es ahora de ${this.sueldo}`)
     }
 }
