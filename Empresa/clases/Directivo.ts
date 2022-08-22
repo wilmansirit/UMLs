@@ -17,6 +17,6 @@ export class Directivo extends Empleado {
 
     mostrarSubordinados(): void {
         console.log(`Listado de subordinados de ${this.nombres}`)
-        this.subordinados.forEach(item => console.log(JSON.stringify(item)));
+        this.subordinados.forEach(item => console.log(item));
     }
 }

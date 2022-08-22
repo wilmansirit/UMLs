@@ -1,3 +1,4 @@
+import { dir } from "console";
 import {Cliente, Directivo, Empleado, Empresa, Persona} from "./clases"
 
 
@@ -34,24 +35,29 @@ Telcel.agregarClient([cliente001,cliente002,cliente003]);
 
 // Promoviendo a un Empleado a Gerente
 const FedericManos: Empleado = empleadosTelcel[3];
-Telcel.promoverEmpleado(FedericManos, 'Gerente', 200);
+const vsirit: Empleado = empleadosTelcel[1];
+Telcel.promoverEmpleado(FedericManos, 'Gerente', 276.45);
+Telcel.promoverEmpleado(vsirit, 'Gerente General', 438.45);
+
 let directivos:Directivo[] = Telcel.listaDirectivos();
 
 console.log('\nPromoviendo a un Empleado')
-directivos.forEach(directivo => console.log(JSON.stringify(directivo)))
+directivos.forEach(directivo => console.log(JSON.stringify(directivo)));
 
 // Asignado Empleados al Gerente Federic Manos
 const wsirit = empleadosTelcel[0];
 const lcordero = empleadosTelcel[2];
-const fmanos = directivos[0]
+const gerente = directivos[0];
+const gerenteGeneral = directivos[1]
 
-Telcel.asignarEmpleadoADirectivo(wsirit, fmanos);
-Telcel.asignarEmpleadoADirectivo(lcordero, fmanos);
+Telcel.asignarEmpleadoADirectivo(wsirit, gerente);
+Telcel.asignarEmpleadoADirectivo(gerente, gerenteGeneral);
 
 // Listado Empleados del recien promovido Directivo
 console.log('\n');
 directivos = Telcel.listaDirectivos();
-directivos[0].mostrarSubordinados();
+// directivos[0].mostrarSubordinados();
+// directivos[1].mostrarSubordinados();
 
 // Aumentando el sueldo de Lisette Cordero
 Telcel.aumentarSueldo(lcordero, 145.50);

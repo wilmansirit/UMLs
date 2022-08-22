@@ -25,15 +25,16 @@ export class Empresa {
     }
 
     // Crear un nuevo directivo
-    promoverEmpleado(empleado:Empleado, categoria:string, sueldo:number) {
+    promoverEmpleado(empleado:Empleado, categoria:string, nuevoSueldo:number) {
 
-        const nuevoDirectivo = new Directivo (empleado.nombres, empleado.edad, sueldo, categoria);
+        empleado.sueldo = nuevoSueldo;
+        const nuevoDirectivo = new Directivo (empleado.nombres, empleado.edad, nuevoSueldo, categoria);
         this.directivos.push(nuevoDirectivo);
 
         // Remover de la lista de Empleados
-        this.empleados = this.empleados.filter(item => {
-            return item.nombres != empleado.nombres
-        })
+        // this.empleados = this.empleados.filter(item => {
+        //     return item.nombres != empleado.nombres
+        // })
 
     }
 
@@ -49,6 +50,7 @@ export class Empresa {
 
     }
 
+    // Muestra la conformación de la Empresa
     mostrarOrganizacion(): void {
         console.log(`\nEmpresa: ${this.nombre}`);
 
@@ -63,12 +65,12 @@ export class Empresa {
 
     }
 
-    // Muestra una lista de Empleados de la Empresa
+    // Devuelve una lista de Empleados de la Empresa
     listaEmpleados(): Empleado[] {
         return this.empleados;
     }
 
-    // Muestra una lista de Empleados de la Empresa
+    // Devuelve una lista de Directivos de la Empresa
     listaDirectivos(): Directivo[] {
         return this.directivos;
     }
