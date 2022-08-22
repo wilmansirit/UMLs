@@ -31,11 +31,6 @@ export class Empresa {
         const nuevoDirectivo = new Directivo (empleado.nombres, empleado.edad, nuevoSueldo, categoria);
         this.directivos.push(nuevoDirectivo);
 
-        // Remover de la lista de Empleados
-        // this.empleados = this.empleados.filter(item => {
-        //     return item.nombres != empleado.nombres
-        // })
-
     }
 
     // Aumentandole de sueldo

@@ -10,13 +10,25 @@ const Telcel = new Empresa("Telcel C.A")
 const persona001 = new Persona('Wilman Sirit', 55);
 const persona002 = new Persona('Victor Sirit', 25,);
 const persona003 = new Persona('Lisette Cordero', 54);
-const persona004 = new Persona('Frederic Manos', 60);
+const persona004 = new Persona('Frederic Manos', 57);
+const persona005 = new Persona('Daniel MAduro', 30);
+const persona006 = new Persona('Nicolas Ortega', 6);
+const persona007 = new Persona('Daniel Poleo', 38);
+const persona008 = new Persona('Patricia Lara', 42);
+const persona009 = new Persona('Antonio Céspedes', 18);
+const persona010 = new Persona('María Antonia Flores', 23);
 
 // Contratando personal
 Telcel.agregarEmpleados(persona001);
 Telcel.agregarEmpleados(persona002);
 Telcel.agregarEmpleados(persona003);
 Telcel.agregarEmpleados(persona004);
+Telcel.agregarEmpleados(persona005);
+Telcel.agregarEmpleados(persona006);
+Telcel.agregarEmpleados(persona007);
+Telcel.agregarEmpleados(persona008);
+Telcel.agregarEmpleados(persona009);
+Telcel.agregarEmpleados(persona010);
 
 // Listar y mostrar Empleados;
 let empleadosTelcel: Empleado[] = Telcel.listaEmpleados();
