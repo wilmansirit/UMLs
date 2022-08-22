@@ -18,7 +18,7 @@ export class Empresa {
     }
 
     // Contratar Empleados a la nueva Compañía
-    agregarEmpleados(persona:Persona) {
+    agregarEmpleados(persona:Persona):void {
 
         const {nombres, edad} = persona
         const sueldo = 100
@@ -29,12 +29,12 @@ export class Empresa {
     }
 
     // Cambiar Cargo de un Empleado
-    cambiarCargo(empleado:Empleado, nuevoCargo:string) {
+    cambiarCargo(empleado:Empleado, nuevoCargo:string):void {
         empleado.cargo = nuevoCargo;
     }
 
     // Crear un nuevo directivo
-    crearDirectivo(empleado:Empleado, nuevoCargo:string, nuevoSueldo:number) {
+    crearDirectivo(empleado:Empleado, nuevoCargo:string, nuevoSueldo:number):void {
         let {nombres, edad, cargo, sueldo} = empleado;
         cargo = nuevoCargo;
         sueldo = nuevoSueldo;
