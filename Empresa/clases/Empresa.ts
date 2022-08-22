@@ -4,7 +4,7 @@ export class Empresa {
     private nombre:string;
     private clientes:Cliente[] = [];
     private empleados:Empleado[] = [];
-    private directivos:Directivo[] = [];
+    private directivos:Empleado[] = [];
 
     constructor(nombreEmpresa:string){
         this.nombre = nombreEmpresa;
@@ -28,8 +28,8 @@ export class Empresa {
 
         empleado.sueldo = nuevoSueldo;
         empleado.cargo = nuevoCargo;
-        const nuevoDirectivo = new Directivo (empleado.nombres, empleado.edad, nuevoCargo, nuevoSueldo);
-        this.directivos.push(nuevoDirectivo);
+        // const nuevoDirectivo = new Directivo (empleado.nombres, empleado.edad, nuevoCargo, nuevoSueldo);
+        this.directivos.push(empleado);
 
     }
 
@@ -66,7 +66,7 @@ export class Empresa {
     }
 
     // Devuelve una lista de Directivos de la Empresa
-    listaDirectivos(): Directivo[] {
+    listaDirectivos(): Empleado[] {
         return this.directivos;
     }
 }

@@ -51,7 +51,7 @@ const vsirit: Empleado = empleadosTelcel[1];
 Telcel.promoverEmpleado(FedericManos, 'Gerente', 276.45);
 Telcel.promoverEmpleado(vsirit, 'Gerente General', 438.45);
 
-let directivos:Directivo[] = Telcel.listaDirectivos();
+let directivos:Empleado[] = Telcel.listaDirectivos();
 
 console.log('\nPromoviendo a un Empleado')
 directivos.forEach(directivo => console.log(JSON.stringify(directivo)));
@@ -60,7 +60,7 @@ directivos.forEach(directivo => console.log(JSON.stringify(directivo)));
 const gerente = directivos[0];
 const gerenteGeneral = directivos[1]
 
-Telcel.asignarEmpleadoADirectivo(empleadosTelcel[0], gerente);
+// Telcel.asignarEmpleadoADirectivo(empleadosTelcel[0], gerente);
 // Telcel.asignarEmpleadoADirectivo(empleadosTelcel[2], gerente);
 // Telcel.asignarEmpleadoADirectivo(empleadosTelcel[4], gerente);
 // Telcel.asignarEmpleadoADirectivo(empleadosTelcel[5], gerente);
@@ -68,9 +68,9 @@ Telcel.asignarEmpleadoADirectivo(empleadosTelcel[0], gerente);
 // Telcel.asignarEmpleadoADirectivo(empleadosTelcel[7], gerente);
 // Telcel.asignarEmpleadoADirectivo(empleadosTelcel[8], gerente);
 
-Telcel.asignarEmpleadoADirectivo(gerente, gerenteGeneral);
-Telcel.asignarEmpleadoADirectivo(empleadosTelcel[9], gerente);
-Telcel.asignarEmpleadoADirectivo(empleadosTelcel[10], gerente);
+// Telcel.asignarEmpleadoADirectivo(gerente, gerenteGeneral);
+// Telcel.asignarEmpleadoADirectivo(empleadosTelcel[9], gerente);
+// Telcel.asignarEmpleadoADirectivo(empleadosTelcel[10], gerente);
 
 
 // Listado Empleados del recien promovido Directivo
