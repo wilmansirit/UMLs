@@ -16,26 +16,26 @@ export class Empresa {
         })
     }
 
-    agregarEmpleados(persona:Persona) {
+    agregarEmpleados(persona:Persona, cargo:string, sueldo:number) {
 
-        const sueldo = 100
-        const nuevoEmpleado = new Empleado( persona.nombres, persona.edad, sueldo);
+        const nuevoEmpleado = new Empleado( persona.nombres, persona.edad, cargo, sueldo);
         this.empleados.push(nuevoEmpleado);
 
     }
 
     // Crear un nuevo directivo
-    promoverEmpleado(empleado:Empleado, categoria:string, nuevoSueldo:number) {
+    promoverEmpleado(empleado:Empleado, nuevoCargo:string, nuevoSueldo:number) {
 
         empleado.sueldo = nuevoSueldo;
-        const nuevoDirectivo = new Directivo (empleado.nombres, empleado.edad, nuevoSueldo, categoria);
+        empleado.cargo = nuevoCargo;
+        const nuevoDirectivo = new Directivo (empleado.nombres, empleado.edad, nuevoCargo, nuevoSueldo);
         this.directivos.push(nuevoDirectivo);
 
     }
 
     // Aumentandole de sueldo
     aumentarSueldo(empleado:Empleado, nuevoSueldo:number): void {
-        empleado.calcular_salario_neto(nuevoSueldo);
+        empleado.sueldo = nuevoSueldo;
     }
 
     // Asignando personal al directivo

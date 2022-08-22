@@ -1,12 +1,11 @@
 import {Empleado} from './index'
 
 export class Directivo extends Empleado {
-    categoria: string;
+
     subordinados:Empleado[] = [];
 
-    constructor(nombres:string, edad:number, sueldo:number, categoria:string){
-        super(nombres, edad, sueldo);
-        this.categoria = categoria
+    constructor(nombres:string, edad:number, cargo:string, sueldo:number){
+        super(nombres, edad, cargo, sueldo);
     }
 
     agregarSubordinado(empleado:Empleado): void {
