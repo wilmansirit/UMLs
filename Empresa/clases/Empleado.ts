@@ -2,8 +2,8 @@ import {Persona} from './Persona'
 
 export class Empleado extends Persona {
 
-    sueldo: number;
     cargo: string;
+    sueldo: number;
 
     constructor(nombres:string, edad:number, cargo:string, sueldo:number){
         super(nombres, edad)
@@ -12,11 +12,10 @@ export class Empleado extends Persona {
     }
 
     mostrar(): string{
-        return `Empleado: ${this.nombres}, Edad: ${this.edad} años.`
+        return `Empleado: ${this.nombres}, Edad: ${this.edad} años. Cargo: ${this.cargo}.`
     }
 
-    calcular_salario_neto(): void {
-        console.log(`${this.nombres} tiene un sueldo de: ${this.sueldo}`)
+    calcular_salario_neto(nuevoSueldo:number): void {
+        console.log(`El sueldo de: ${this.nombres} es: ${this.sueldo}`)
     }
-
 }

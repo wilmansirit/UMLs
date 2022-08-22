@@ -4,32 +4,42 @@ export class Empresa {
     private nombre:string;
     private clientes:Cliente[] = [];
     private empleados:Empleado[] = [];
-    private directivos:Empleado[] = [];
+    private directivos:Directivo[] = [];
 
     constructor(nombreEmpresa:string){
         this.nombre = nombreEmpresa;
     }
 
-    agregarClient(clientes:Cliente[]): void {
+    // Contactar nuevos Clientes
+    agregarClientes(clientes:Cliente[]): void {
         clientes.forEach(cliente => {
             this.clientes.push(cliente)
         })
     }
 
-    agregarEmpleados(persona:Persona, cargo:string, sueldo:number) {
+    // Contratar Empleados a la nueva Compañía
+    agregarEmpleados(persona:Persona) {
 
-        const nuevoEmpleado = new Empleado( persona.nombres, persona.edad, cargo, sueldo);
+        const {nombres, edad} = persona
+        const sueldo = 100
+        const cargo = 'Empleado'
+        const nuevoEmpleado = new Empleado(nombres, edad, cargo, sueldo)
         this.empleados.push(nuevoEmpleado);
 
     }
 
-    // Crear un nuevo directivo
-    promoverEmpleado(empleado:Empleado, nuevoCargo:string, nuevoSueldo:number) {
-
-        empleado.sueldo = nuevoSueldo;
+    // Cambiar Cargo de un Empleado
+    cambiarCargo(empleado:Empleado, nuevoCargo:string) {
         empleado.cargo = nuevoCargo;
-        // const nuevoDirectivo = new Directivo (empleado.nombres, empleado.edad, nuevoCargo, nuevoSueldo);
-        this.directivos.push(empleado);
+    }
+
+    // Crear un nuevo directivo
+    crearDirectivo(empleado:Empleado, nuevoCargo:string, nuevoSueldo:number) {
+        let {nombres, edad, cargo, sueldo} = empleado;
+        cargo = nuevoCargo;
+        sueldo = nuevoSueldo;
+        const nuevoDirectivo = new Directivo (nombres, edad, nuevoCargo, nuevoSueldo);
+        this.directivos.push(nuevoDirectivo);
 
     }
 
@@ -66,7 +76,7 @@ export class Empresa {
     }
 
     // Devuelve una lista de Directivos de la Empresa
-    listaDirectivos(): Empleado[] {
+    listaDirectivos(): Directivo[] {
         return this.directivos;
     }
 }
