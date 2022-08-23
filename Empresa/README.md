@@ -1,4 +1,4 @@
-## Ejercicio 001. La Empresa
+# Ejercicio 001. La Empresa
 
 > Requerimiento
 1. Una aplicacion necesita almacena informacion sobre empresas, sus empleados y sus empreados
