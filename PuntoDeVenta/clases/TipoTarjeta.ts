@@ -1,0 +1,1 @@
+export type TipoTarjeta = "VISA" | "MASTERCARD"
