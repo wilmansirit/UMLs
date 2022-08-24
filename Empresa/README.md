@@ -11,5 +11,5 @@
 
 
 <img src="Empresa.png"
-     alt="Markdown Monster icon"
+     alt="UML Empresa"
      style="float: left; margin-right: 10px;" />

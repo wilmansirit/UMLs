@@ -6,8 +6,8 @@ export class Directivo extends Empleado {
 
     constructor(nombres:string, edad:number, cargo:string, sueldo:number){
         super(nombres, edad, cargo, sueldo);
-        this.cargo = cargo;
-        this.sueldo = sueldo;
+        // this.cargo = cargo;
+        // this.sueldo = sueldo;
     }
 
     agregarSubordinado(empleado:Empleado): void {        
