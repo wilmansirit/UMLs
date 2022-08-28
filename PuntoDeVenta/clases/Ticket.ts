@@ -1,17 +1,14 @@
 export class Ticket{
 
     protected nombreApellidosTitular:string;
-    protected montoPagado:number;
+    protected montoAPagar:number;
     protected montoCuotas:number;
-    protected numeroCuotas: number;
 
-    constructor(nombreApellidosTitular:string, montoPagado:number, montoCuotas:number, numeroCuotas:number) {
 
+    constructor(nombreApellidosTitular:string, montoAPagar:number, montoCuotas:number) {
         this.nombreApellidosTitular = nombreApellidosTitular;
-        this.montoPagado = montoPagado;
+        this.montoAPagar = montoAPagar;
         this.montoCuotas = montoCuotas;
-        this.numeroCuotas = numeroCuotas;
-
     }
     
 }

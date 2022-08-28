@@ -1,9 +1,9 @@
 import {TipoTarjeta} from "./index"
 export class TarjetaDeCredito {
 
-    protected numeroTarjeta:string;
-    protected tipo:TipoTarjeta;
-    protected DNI:string;
+    numeroTarjeta:string;
+    tipo:TipoTarjeta;
+    DNI:string;
 
     constructor(tipo:TipoTarjeta, DNI:string) {
         this.tipo = tipo
@@ -12,9 +12,7 @@ export class TarjetaDeCredito {
     }
 
     protected GenerarNumeroTarjeta():string {
-
-        return "1234-4567-123456789";
-
+        return `${4563}-${Math.round(Math.random() * 10000)}-${Math.round(Math.random() * 100000000)}`
     }
     
 }

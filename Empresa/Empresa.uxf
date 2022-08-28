@@ -1,0 +1,50 @@
+<diagram program="umletino" version="15.0.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>310</x><y>20</y><w>210</w><h>100</h></coordinates><panel_attributes>&lt;&lt;Persona&gt;&gt;
+--
+-nombre: string
+-edad: number
+
+--
++mostrar():void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>690</x><y>200</y><w>210</w><h>100</h></coordinates><panel_attributes>&lt;&lt;Cliente&gt;&gt;
+--
+-telefono_de_contacto
+
+--
++mostrar():void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>470</x><y>110</y><w>350</w><h>110</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;50;330;50;330;90</additional_attributes></element><element><id>UMLClass</id><coordinates><x>150</x><y>190</y><w>210</w><h>100</h></coordinates><panel_attributes>&lt;&lt;Empleado&gt;&gt;
+--
+-sueldo_bruto: number
+
+--
++mostrar():void
++calcular_salario_neto:number</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>240</x><y>110</y><w>170</w><h>100</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>150;10;150;50;10;50;10;80</additional_attributes></element><element><id>UMLClass</id><coordinates><x>150</x><y>470</y><w>210</w><h>150</h></coordinates><panel_attributes>&lt;&lt;Directivo&gt;&gt;
+--
+-subordinados: Empleado[ ]
+
+--
++mostrar():void
++agregarSubordinado(empleado:Empleado): void
++mostrarSubordinados(): void
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>240</x><y>280</y><w>30</w><h>210</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;190</additional_attributes></element><element><id>Relation</id><coordinates><x>30</x><y>230</y><w>140</w><h>320</h></coordinates><panel_attributes>lt=-
+m1=0..* subordinados
+m2=0..* directivos
+tiene &gt;</panel_attributes><additional_attributes>120;10;30;10;30;290;120;290</additional_attributes></element><element><id>UMLClass</id><coordinates><x>490</x><y>470</y><w>380</w><h>210</h></coordinates><panel_attributes>&lt;&lt;Empresa&gt;&gt;
+--
+-nombre:string;
+
+--
+agregarClientes( clientes:Cliente[ ] ): void 
+agregarEmpleados(persona:Persona):void 
+cambiarCargo(empleado:Empleado, nuevoCargo:string)
+crearDirectivo(empleado:Empleado, nuevoCargo:string, nuevoSueldo:number):void
+aumentarSueldo(empleado:Empleado, nuevoSueldo:number): void 
+asignarEmpleadoADirectivo(empleado:Empleado, directivo:Directivo): void
+mostrarOrganizacion(): void
+listaEmpleados(): Empleado[ ]
+listaDirectivos(): Directivo[ ]</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>790</x><y>290</y><w>90</w><h>200</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=1..* clientes</panel_attributes><additional_attributes>10;180;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>290</x><y>280</y><w>470</w><h>210</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1 Empresa
+m2=1..* empleados
+</panel_attributes><additional_attributes>390;190;390;60;10;60;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>300</x><y>400</y><w>360</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1 Empresa
+m2=1..* Directivos</panel_attributes><additional_attributes>280;70;280;10;10;10;10;70</additional_attributes></element></diagram>

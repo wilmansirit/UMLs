@@ -1,0 +1,63 @@
+@startuml "UFT"
+
+class Empresa {
+    - nombre:string
+    - clientes:Cliente[]
+    - empleados:Empleado[]
+    - directivos:Directivo[]
+
+    Empresa(nombreEmpresa:string)
+    agregarClientes(Cliente[]): void
+    cambiarCargo(Empleado, string): void
+    crearDirectivo(Empleado, string, number): void
+    aumentarSueldo(Empleado, number): void
+    asignarEmpleadoADirectivo(Empleado, Directivo): void
+    mostrarOrganizacion(): void
+    listaDirectivos(): Directivo[]
+}
+
+class Empleado extends Persona {
+
+    cargo: string
+    sueldo: number
+
+    Empleado(string, number, string, number):void
+    mostrar(): string
+    calcular_salario_neto(number):number
+
+}
+
+class Persona {
+
+    nombres: string
+    edad: number
+
+    Persona(string, number)
+    mostrar(): string
+
+}
+
+
+class Directivo extends Empleado {
+
+    subordinados:Empleado[]
+
+    Directivo(string, number, string, number)
+    agregarSubordinado(Empleado): void 
+    mostrarSubordinados(): void
+}
+
+class Cliente extends Persona {
+    - telefono_de_contacto: string
+
+    Cliente(string, number, string)
+    mostrar(): string
+}
+
+
+Empresa "1" *-- "1..*" Empleado : "está compuesta"
+Empresa "1" *-- "1..*" Cliente: "está compuesta"
+Empresa "1" *-- "1..*" Directivo : "está compuesta"
+Empleado "1" --- "1..*" Directivo: "tiene"
+
+@enduml

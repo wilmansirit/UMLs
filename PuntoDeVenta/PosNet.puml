@@ -1,0 +1,49 @@
+@startuml "PosNet"
+
+class PosNet {
+    {static} CANT_MAX_CUOTAS
+    {static} CANT_MIN_CUOTAS
+    {static} TASA_INTERES 
+    + efectuarPago(Tarjeta, number, number):Ticket
+    - chequearSaldo(Tarjeta):boolean
+}
+
+class Ticket {
+    + nombreApellidosTitular:string
+    + montoAPagar:number
+    + montoCuota:number
+}
+
+class TarjetaDeCredito {
+    + entidadFinanciera:string
+    + entidadBancaria:string
+    + numeroTarjeta:string
+    + saldoDisponible:number
+    + titular:Titular
+
+    TarjetaDeCredito(string, string, string, number, Titular):void
+}
+
+enum EntidadFinanciera <<enum>> {
+    {static} + VISA
+    {static} + MASTERCARD
+}
+
+class Titular {
+    + DNI:string
+    + nombreApellidos:string
+    + telefono:string
+    + mail:string
+}
+
+
+Ticket "1" <-* "*" PosNet: "genera"
+TarjetaDeCredito <.. PosNet: "tarjeta"
+EntidadFinanciera <-- TarjetaDeCredito: "entidadFinanciera"
+Titular <-- TarjetaDeCredito: "titular" 
+
+
+
+
+
+@enduml

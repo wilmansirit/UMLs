@@ -1,18 +1,19 @@
-import { TarjetaDeCredito } from "./TajetaDeCredito";
-import { Ticket } from "./Ticket";
+import { TarjetaDeCredito,Ticket} from "./";
 
 export class PosNet{
 
-    public ChequearSaldo(tarjeta:TarjetaDeCredito): boolean {
+    private CANT_MIN_CUOTAS = 1;
+    private CANT_MAX_CUOTAS = 6;
+    private TASA_INTERES = 0.03;
 
-        
-        return false
-    }
-
-    public efectuarPago(tarjeta:TarjetaDeCredito, saldoActual:number, numeroCuotas:number):Ticket | null{
-
+    public efectuarPago(tarjeta:TarjetaDeCredito, montoAPagar:number, numeroCuotas:number):Ticket | null{
 
         return null
+    }
+
+    private chequearSaldo(tarjeta:TarjetaDeCredito):boolean{
+
+        return false
     }
 
 }

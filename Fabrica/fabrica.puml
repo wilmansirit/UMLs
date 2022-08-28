@@ -1,0 +1,42 @@
+@startuml "La Fábrica"
+skinparam classAttributeIconSize 0
+
+class Fabrica {
+    - sucursales:Sucursal[]
+
+    porcInstrumentosPorTipo(Sucursal):number
+    listarInstrumentos():void
+
+}
+
+class Sucursal {
+    - nombreSucursal:string
+    - instrumentos:Instrumentos[]
+
+    instrumentoPorTipo(TipoInstrumento):Instrumento[]
+    borrarInstrumento(string):void
+    agregarInstrumento(Instrumento):void
+    listarInstrumentos():void
+    
+}
+
+class Instrumento {
+    - ID:string
+    - precio:number
+    - tipoInstrumento:TipoInstrumento
+
+}
+
+enum TipoInstrumento <<enum>> {
+    {static} + PERCUCION
+    {static} + VIENTO
+    {static} + CUERDA
+}
+
+
+
+Fabrica "1" --> "*" Sucursal: "- sucursales"
+Sucursal "1" <-- "*" Instrumento: "- instrumentos"
+Instrumento <-- "1" TipoInstrumento: "-tipoInstrumento"
+
+@enduml

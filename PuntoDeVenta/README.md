@@ -19,8 +19,7 @@ Las tarjetas de crédito guardan el nombre de la entidad financiera a la que per
 
 > Puntos a desarrollar
 
-1. Desarrollar el diagrama de clases UML que modele lo enunciado y donde consten las clases con
-sus atributos, métodos y relaciones (los constructores pueden omitirse).
+1. Desarrollar el diagrama de clases UML que modele lo enunciado y donde consten las clases con sus atributos, métodos y relaciones (los constructores pueden omitirse).
 
 2. Crear un proyecto en Java que resuelva:
 
