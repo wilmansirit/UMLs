@@ -1,18 +1,31 @@
-import {TipoTarjeta} from "./index"
+import { EntidadFinanciera, Titular } from "./";
+
 export class TarjetaDeCredito {
 
-    numeroTarjeta:string;
-    tipo:TipoTarjeta;
-    DNI:string;
+    private entidadFinanciera:string;
+    private entidadBancaria:string;
+    private numeroTarjeta:string;
+    private saldoDisponible:number;
+    private titular:string;
 
-    constructor(tipo:TipoTarjeta, DNI:string) {
-        this.tipo = tipo
-        this.DNI = DNI
-        this.numeroTarjeta = this.GenerarNumeroTarjeta();
+    constructor(entidadFinanciera:EntidadFinanciera, entidadBancaria:string, numeroTarjeta:string, saldoDisponible:number, titular:Titular) {
+        this.entidadFinanciera = entidadFinanciera;
+        this.entidadBancaria = entidadBancaria;
+        this.numeroTarjeta = numeroTarjeta
+        this.saldoDisponible = saldoDisponible;
+        this.titular = titular.getFullName();
     }
 
-    protected GenerarNumeroTarjeta():string {
-        return `${4563}-${Math.round(Math.random() * 10000)}-${Math.round(Math.random() * 100000000)}`
+    public getSaldo():number{
+        return this.saldoDisponible;
     }
-    
+
+    public setSaldo(monto:number):void{
+        this.saldoDisponible = this.saldoDisponible - monto;
+    }
+
+    public getTitular():string{
+        return this.titular;
+    }
+
 }

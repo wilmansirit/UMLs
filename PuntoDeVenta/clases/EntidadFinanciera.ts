@@ -1,6 +1,2 @@
 
-export enum EntidadFinanciera {
-    VISA,
-    MASTERCARD
-}
-
+export type EntidadFinanciera = "VISA" | "MASTERCARD"

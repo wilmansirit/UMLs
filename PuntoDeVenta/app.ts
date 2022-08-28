@@ -1,24 +1,22 @@
-import { EntidadFinanciera, Cliente, PosNet} from "./clases";
+import { PosNet, TarjetaDeCredito, Titular } from "./clases"
 
+// Crear un PosNet
+const posnet = new PosNet();
 
-const BancoUnion = new EntidadFinanciera("Banco Unión");
+// Crear un Titutar de Tarjeta de Credito
+const antonioZaes = new Titular("9525657", "Antonio Zaes", "04147332788", "azaes@gmail.com");
 
-// Ingresando Clientes al nuevo Banco
-const cliente001:Cliente = BancoUnion.crearCliente("9525657", "Wilman Sirit", "0414-3509923", "wsirit@gmail.com", 1000);
+// Crear tarjeta de credito para AntonioZaes
+const visa = new TarjetaDeCredito("MASTERCARD", "BancoUnion", "1234-5678-123456789", 15_000, antonioZaes);
 
-BancoUnion.asignarTarjetaDeCredito(cliente001, "MASTERCARD");
-BancoUnion.asignarTarjetaDeCredito(cliente001, "VISA");
+// Efectuar una compra
+const ticketDeCompra = posnet.efectuarPago(visa, 10_000, 5);
 
-// Listado de clientes
-let listadoDeClientes = BancoUnion.listarCLientes();
-// listadoDeClientes.forEach(cliente => console.log(JSON.stringify(cliente)));
+console.log("\nSaldo Actual")
+console.log(visa.getSaldo());
 
-// Traer tarjeta de Cliente
-const MASTER = listadoDeClientes[0].tarjeta[0];
-const VISA = listadoDeClientes[0].tarjeta[1];
+console.log("\nSu ticket de compra")
+console.log(JSON.stringify(ticketDeCompra));
 
-// Instancias un Punto de Venta
-const postnet = new PosNet();
-
-const ticket = postnet.efectuarPago(BancoUnion, MASTER, "9525657", 500, 3);
-console.log(ticket);
+console.log("\nSu saldo ahora es de:")
+console.log(visa.getSaldo());

@@ -1,46 +1,56 @@
 @startuml "PosNet"
 
 class PosNet {
-    {static} CANT_MAX_CUOTAS
-    {static} CANT_MIN_CUOTAS
-    {static} TASA_INTERES 
+    {static} - CANT_MAX_CUOTAS
+    {static} -CANT_MIN_CUOTAS
+    {static} - TASA_INTERES 
     + efectuarPago(Tarjeta, number, number):Ticket
-    - chequearSaldo(Tarjeta):boolean
+    - aprobar(Tarjeta,number, number):boolean
+    - interes(number):number
 }
 
 class Ticket {
-    + nombreApellidosTitular:string
-    + montoAPagar:number
-    + montoCuota:number
+    - nombreApellidosTitular:string
+    - montoAPagar:number
+    - montoCuota:number
+
+    + Ticket(string, number, number):void
 }
 
 class TarjetaDeCredito {
-    + entidadFinanciera:string
-    + entidadBancaria:string
-    + numeroTarjeta:string
-    + saldoDisponible:number
-    + titular:Titular
+    - entidadFinanciera:string
+    - entidadBancaria:string
+    - numeroTarjeta:string
+    - saldoDisponible:number
+    - titular:Titular
 
     TarjetaDeCredito(string, string, string, number, Titular):void
+    getSaldo():number
+    setSaldo(number)
+    getTitular():string
 }
 
-enum EntidadFinanciera <<enum>> {
+enum EntidadFinanciera <<Type>> {
     {static} + VISA
     {static} + MASTERCARD
 }
+note left: Se define en un Type
 
 class Titular {
-    + DNI:string
-    + nombreApellidos:string
-    + telefono:string
-    + mail:string
+    - DNI:string
+    - nombreApellidos:string
+    - telefono:string
+    - mail:string
+
+    getFullName():string
 }
+
 
 
 Ticket "1" <-* "*" PosNet: "genera"
 TarjetaDeCredito <.. PosNet: "tarjeta"
-EntidadFinanciera <-- TarjetaDeCredito: "entidadFinanciera"
-Titular <-- TarjetaDeCredito: "titular" 
+EntidadFinanciera <.. TarjetaDeCredito: "entidadFinanciera"
+Titular <.. TarjetaDeCredito: "titular" 
 
 
 

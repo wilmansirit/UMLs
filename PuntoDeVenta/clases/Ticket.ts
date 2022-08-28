@@ -1,8 +1,8 @@
 export class Ticket{
 
-    protected nombreApellidosTitular:string;
-    protected montoAPagar:number;
-    protected montoCuotas:number;
+    private nombreApellidosTitular:string;
+    private montoAPagar:number;
+    private montoCuotas:number;
 
 
     constructor(nombreApellidosTitular:string, montoAPagar:number, montoCuotas:number) {

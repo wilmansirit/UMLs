@@ -1,9 +1,9 @@
 export class Titular {
 
-    DNI:string;
-    nombreApellidos:string;
-    telefono:string;
-    mail:string
+    private DNI:string;
+    private nombreApellidos:string;
+    private telefono:string;
+    private mail:string
 
     constructor(DNI:string, nombreApellidos:string, telefono:string, mail:string){
 
@@ -12,6 +12,10 @@ export class Titular {
         this.telefono = telefono;
         this.mail = mail;
         
+    }
+
+    public getFullName():string {
+        return this.nombreApellidos
     }
 
 }
