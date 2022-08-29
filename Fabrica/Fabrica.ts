@@ -13,16 +13,15 @@ export class Fabrica {
 
         const inventario = new Object as ObjectInstr
         const tipos:TipoInstrumento[] = ["PERCUSION","VIENTO","CUERDA"];
+        const numeroInstrumentos = sucursal.listarInstrumentos.length
 
         tipos.forEach(tipo => {
 
-            const numeroInstrumentos = sucursal.listarInstrumentos.length
             inventario[tipo] = sucursal.instrumentoPorTipo(tipo).length / numeroInstrumentos * 100;
             
         })
         
         console.log(inventario);
-
     }
 
     listarInstrumentos():void {
