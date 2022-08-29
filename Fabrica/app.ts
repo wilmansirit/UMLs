@@ -1,7 +1,4 @@
-import { Fabrica } from "./Fabrica";
-import { Instrumento } from "./Instrumento";
-import { Sucursal } from "./Sucursal";
-
+import { Fabrica, Instrumento, Sucursal } from "./clases";
 
 // Crear la fabrica de instrumentos
 const fabrica = new Fabrica()

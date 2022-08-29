@@ -1,4 +1,4 @@
-import { TipoInstrumento } from "./TipoInstrumento";
+import { TipoInstrumento } from "./TipoInstrumento"
 
 export class Instrumento {
 
