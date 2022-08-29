@@ -11,10 +11,10 @@ class Fabrica {
 }
 
 class Sucursal {
-    - nombreSucursal:string
+    - nombre:string
     - instrumentos:Instrumentos[]
 
-    getNombreSucursal():string
+    nombreSucursal():string
     instrumentoPorTipo(TipoInstrumento):Instrumento[]
     borrarInstrumento(string):void
     agregarInstrumento(Instrumento):void

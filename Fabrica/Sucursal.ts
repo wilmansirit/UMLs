@@ -2,16 +2,16 @@ import { Instrumento } from "./Instrumento";
 import { TipoInstrumento } from "./TipoInstrumento";
 
 export class Sucursal {
-    private nombreSucursal:string;
+    private nombre:string;
     private instrumentos:Instrumento[] = [];
 
 
     constructor(nombreSucursal:string){
-        this.nombreSucursal = nombreSucursal;
+        this.nombre = nombreSucursal;
     }
     
-    getNombreSucursal(): string {
-        return this.nombreSucursal;
+    get nombreSucursal(): string {
+        return this.nombre;
     }
 
     public instrumentoPorTipo(tipo:TipoInstrumento):Instrumento[]{
@@ -28,7 +28,7 @@ export class Sucursal {
         this.instrumentos.push(instrumento);
     }
     
-    public listarInstrumentos():Instrumento[] {
+    get listarInstrumentos():Instrumento[] {
         return this.instrumentos
     }
 

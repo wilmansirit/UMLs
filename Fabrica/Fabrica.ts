@@ -16,7 +16,7 @@ export class Fabrica {
 
         tipos.forEach(tipo => {
 
-            const numeroInstrumentos = sucursal.listarInstrumentos().length
+            const numeroInstrumentos = sucursal.listarInstrumentos.length
             inventario[tipo] = sucursal.instrumentoPorTipo(tipo).length / numeroInstrumentos * 100;
             
         })
@@ -29,8 +29,8 @@ export class Fabrica {
 
         this.sucursales.forEach(sucursal => {
 
-            console.log("\n" + sucursal.getNombreSucursal())            
-            sucursal.listarInstrumentos().forEach(instrumento => {
+            console.log("\n" + sucursal.nombreSucursal)            
+            sucursal.listarInstrumentos.forEach(instrumento => {
                 console.log(JSON.stringify(instrumento))
             });
 
