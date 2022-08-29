@@ -1,11 +1,12 @@
 @startuml "La Fábrica"
-skinparam classAttributeIconSize 0
+
 
 class Fabrica {
     - sucursales:Sucursal[]
 
-    porcInstrumentosPorTipo(Sucursal):number
-    listarInstrumentos():void
+    + agregarSucursal(Sucursal):void
+    + porcInstrumentosPorTipo(Sucursal):number
+    + listarInstrumentos():void
 
 }
 
@@ -13,6 +14,7 @@ class Sucursal {
     - nombreSucursal:string
     - instrumentos:Instrumentos[]
 
+    getNombreSucursal():string
     instrumentoPorTipo(TipoInstrumento):Instrumento[]
     borrarInstrumento(string):void
     agregarInstrumento(Instrumento):void
