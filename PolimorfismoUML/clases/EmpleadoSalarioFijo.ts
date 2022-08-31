@@ -14,13 +14,14 @@ export class EmpleadoSalarioFijo extends Empleado{
         return this.salarioBasico * (1 + this.calculoPorcentaje())
     }
 
-    
+
     private calculoPorcentaje(): number {
 
+        const hoy = new Date()
         const fechaIngreso = super.traerFechaIngreso
         let porcentaje = 0;
         const anioActual = fechaIngreso.getFullYear();
-        const anios = 2022 - anioActual;
+        const anios = hoy.getFullYear() - anioActual;
         
         if (anios >= 2) porcentaje = 0.05;
         if (anios >= 5) porcentaje = 0.1; 

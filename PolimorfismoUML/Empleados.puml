@@ -4,7 +4,8 @@ class Empresa {
     {static} - PORC_ADIC_2_A_5_ANIOS number
     {static} - PORC_ADIC_MAS_DE_5_ANIOS number
 
-    + getSalario():number
+    + getSalarios():number
+    + empleadoConMasClientes():Empleado
 
 }
 
