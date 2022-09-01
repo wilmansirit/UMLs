@@ -23,4 +23,8 @@ export class EmpleadoComision extends Empleado {
 
         return salario;
     }
+
+    public get numeroClientes():number {
+        return this.numeroClientesCaptados;
+    }
 }

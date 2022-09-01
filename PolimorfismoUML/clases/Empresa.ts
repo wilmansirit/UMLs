@@ -1,4 +1,5 @@
 import { Empleado } from "./Empleado";
+import { EmpleadoComision } from "./EmpleadoComision";
 import { salarios } from "./Interfaces";
 
 export class Empresa {
@@ -20,7 +21,6 @@ export class Empresa {
     public getSalarios():salarios {
 
         let nomina = new Object() as salarios;
-
         this.listaEmpleados.forEach(empleado => {
 
             nomina[empleado.fullName] = empleado.getSalario();
@@ -32,7 +32,22 @@ export class Empresa {
 
     public empleadoConMasClientes():Empleado | null{
         
-        return null
+        let empleadoGanador:Empleado | null= null;
+        let mayorSalario = 0;
+
+        this.listaEmpleados.forEach(empleado => {
+
+            if (empleado instanceof EmpleadoComision) {
+                if (mayorSalario < empleado.getSalario()) {
+                    mayorSalario = empleado.getSalario();
+                    empleadoGanador = empleado;
+                };
+            }
+
+        })
+
+        return empleadoGanador;
+
     }    
 
 }

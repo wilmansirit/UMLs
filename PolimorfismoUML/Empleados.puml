@@ -36,6 +36,7 @@ class EmpleadosComision {
     - montoPorClienteCaptado:number
 
     + getSalario():number
+    + numeroClientes():number
 }
 
 Empleado <-- Empresa

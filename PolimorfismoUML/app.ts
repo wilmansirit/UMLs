@@ -10,8 +10,8 @@ const empleadoSF002 = new EmpleadoSalarioFijo("14578923", "Agustin Jose", "Da Si
 const empleadoSF003 = new EmpleadoSalarioFijo("25542312", "Cesar Francisco", "Ascanio Lopez", new Date("01/06/2019"), 1235);
 
 // Crear Empleados por comision
-const empleadoPC001 = new EmpleadoComision("23897300", "Arnaldo Gabriel", "Daria Jimenez", new Date("14/02/1998"), 1287, 50, 200)
-const empleadoPC002 = new EmpleadoComision("7388899", "Lisette Josefina", "Cordero Cordeo", new Date("07/05/2014"), 956.80, 100, 130)
+const empleadoPC001 = new EmpleadoComision("23897300", "Arnaldo Gabriel", "Daria Jimenez", new Date("14/02/1998"), 1200, 47, 200)
+const empleadoPC002 = new EmpleadoComision("7388899", "Lisette Josefina", "Cordero Cordeo", new Date("07/05/2014"), 9156.80, 10, 130)
 const empleadoPC003 = new EmpleadoComision("9525657", "Wilman Jose", "Sirit Gonzalez", new Date("15/05/1999"), 2287, 25, 300)
 
 // Creando una Empresa
@@ -29,6 +29,8 @@ const listado = Telcel.getSalarios();
 console.log(listado);
 
 // Traer salario de un empleado
-// console.log(empleadoSF001.getSalario())s
+// console.log( empleadoSF001 instanceof EmpleadoSalarioFijo ) 
 
-console.log( typeof(empleadoPC001))
+// Empleado con mas clientes
+let empleadoConMasCliente = Telcel.empleadoConMasClientes();
+console.log(empleadoConMasCliente);

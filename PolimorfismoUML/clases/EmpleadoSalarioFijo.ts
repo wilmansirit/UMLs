@@ -11,7 +11,8 @@ export class EmpleadoSalarioFijo extends Empleado{
 
 
     public getSalario(): number {        
-        return this.salarioBasico * (1 + this.calculoPorcentaje())
+        const salario = this.salarioBasico * (1 + this.calculoPorcentaje());
+        return salario;
     }
 
 
