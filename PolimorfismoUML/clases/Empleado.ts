@@ -16,4 +16,8 @@
     get traerFechaIngreso(): Date {
         return this.fechaIngreso;
     }
+
+    get fullName():string {
+        return `${this.nombres} ${this.apellidos}`
+    }
  }
