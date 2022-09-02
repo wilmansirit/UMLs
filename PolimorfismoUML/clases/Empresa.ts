@@ -38,7 +38,7 @@ export class Empresa {
         this.listaEmpleados.forEach(empleado => {
 
             if (empleado instanceof EmpleadoComision) {
-                if (mayorSalario < empleado.getSalario()) {
+                if (empleado.getSalario() > mayorSalario) {
                     mayorSalario = empleado.getSalario();
                     empleadoGanador = empleado;
                 };

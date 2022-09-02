@@ -10,9 +10,9 @@ const empleadoSF002 = new EmpleadoSalarioFijo("14578923", "Agustin Jose", "Da Si
 const empleadoSF003 = new EmpleadoSalarioFijo("25542312", "Cesar Francisco", "Ascanio Lopez", new Date("01/06/2019"), 1235);
 
 // Crear Empleados por comision
-const empleadoPC001 = new EmpleadoComision("23897300", "Arnaldo Gabriel", "Daria Jimenez", new Date("14/02/1998"), 1200, 47, 200)
+const empleadoPC001 = new EmpleadoComision("23897300", "Arnaldo Gabriel", "Daria Jimenez", new Date("02/14/1998"), 1200, 47, 200)
 const empleadoPC002 = new EmpleadoComision("7388899", "Lisette Josefina", "Cordero Cordeo", new Date("07/05/2014"), 9156.80, 10, 130)
-const empleadoPC003 = new EmpleadoComision("9525657", "Wilman Jose", "Sirit Gonzalez", new Date("15/05/1999"), 2287, 25, 300)
+const empleadoPC003 = new EmpleadoComision("9525657", "Wilman Jose", "Sirit Gonzalez", new Date("05/15/1999"), 2287, 77, 300)
 
 // Creando una Empresa
 const Telcel = new Empresa("Telcel C.A");
