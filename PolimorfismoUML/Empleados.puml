@@ -1,13 +1,13 @@
 @startuml "Empleados"
 
 class Empresa {
-    {static} - PORC_ADIC_2_A_5_ANIOS number
-    {static} - PORC_ADIC_MAS_DE_5_ANIOS number
-    
+    {static} - PORC_ADIC_2_A_5_ANIOS:number
+    {static} - PORC_ADIC_MAS_DE_5_ANIOS:number
+    - nombreEmpleado:string
 
+    + agregarEmpleado(Empleado):void
     + getSalarios():number
     + empleadoConMasClientes():Empleado
-    + fullName():string
 
 }
 
@@ -18,15 +18,15 @@ abstract class Empleado {
     - fechaIngreso:Date 
 
     + getSalario():number
-
-
+    + traerFechaIngreso():Date
+    + fullName():string
 }
 
 class EmpleadoSalarioFijo {
     - sueldoBasico:number
 
     + getSalario():number
-    + calculoPorcentaje():number
+    - calculoPorcentaje():number
     
 }
 
@@ -42,6 +42,5 @@ class EmpleadosComision {
 Empleado <-- Empresa
 EmpleadoSalarioFijo <|-- Empleado
 EmpleadosComision <|-- Empleado
-
 
 @enduml
