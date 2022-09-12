@@ -1,0 +1,95 @@
+@startuml "La biblioteca"
+
+class Libro {
+    - ISBN:string
+    - nombreLibro:string
+    - editorial:string
+    - anio:Date
+    - autor:string
+}
+
+enum TipoLibro {
+    NOVELA,
+    TEATRO,
+    POESIA,
+    ENSAYO
+}
+
+class Autor {
+    - nombreAutor:string
+    - nacionalidad:string
+    - fechaNacimiento:Date
+}
+
+class Copia {
+    - idCopia:string
+    - libro:Libro
+    - estatusCopia:EstatusCopia
+    + cambiarEstatusCopia(EstatusCopia):void
+    + crearCopia(Libro):void
+    + getIdCopia(): string
+    + getEstatusCopia(): string 
+}
+
+enum EstatusCopia {
+    EN_BIBLIOTECA,
+    PRESTADA,
+    CON_RETRASO,
+    EN_REPARACION
+}
+
+class Biblioteca {
+
+    - NUMERO_MAX_PRESTAMOS:number
+    - NUMERO_MAX_DIAS:number
+    - DIAS_DE_MULTA:number
+    - NUMERO_MAX_COPIAS:number
+
+    + nombreBiblioteca:string
+
+    - copias[]:Copia
+    - prestamos[]:Prestamo
+    - lectores[]:Lector
+    - registros[]:any
+
+    - devolverLibro(Prestamo):string{}
+    - calcularDiasDePrestamo():number
+    - calcularMulta():number
+
+    - buscarLectorPorId(string):Lector
+    - buscarCopiaPorId(string):Copia
+    + buscarPrestamoPorId(string):Prestamo
+    + agregarLector(Lector):string{}
+    + crearCopias(Libro):Copia
+    + prestarLibro(string, string):Prestamo
+    + traerCopias():Copia[]
+    + mostrarRegistros(): void
+}
+
+class Lector {
+    - idLector:string
+    - nombreLector:name
+
+    + getIdLector(): string
+    + getnombreLector():string
+}
+
+class Prestamo {
+    - lector:Lector
+    - copia:Copia
+    - fechaPrestamo:Date
+    - fechaDevolucion:Date
+
+    + cambiarEstatusCopia(EstatusCopia): void
+    + idGenerator(string):string
+}
+
+TipoLibro <-- Libro: "Es de tipo"
+Autor "1" <-- "1" Libro: "ha sido escrito por"
+Libro <|-- Copia: "hereda de" 
+EstatusCopia "1" <-- "1" Copia: "tiene"
+Biblioteca "1" o-- "1..*" Lector: "congrega a"
+Biblioteca "1" *-- "1..*" Copia: "se compone de"
+Biblioteca "1" *-- "1..*" Prestamo: "se compone de"
+
+@enduml
