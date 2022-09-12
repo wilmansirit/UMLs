@@ -24,9 +24,8 @@ export class Copia extends Libro{
             this.idCopia = idCopia;
     }
 
-    private idGenerator(id:number): string {
-        return `${this.ISBN}-copia00${id}`;
+    get getIdCopia(): string {
+        return this.idCopia;
     }
-
 
 }

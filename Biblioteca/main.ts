@@ -1,8 +1,8 @@
 import { Biblioteca } from "./clases/Biblioteca";
 import { Libreria } from "./clases/libreria";
-import { Libro } from "./clases/Libro";
 import { Autor } from "./clases/Autor";
 import { Lector } from "./clases/Lector";
+import { Copia } from "./clases/Copia";
 
 
 console.clear()
@@ -13,28 +13,24 @@ const pioTamayo = new Biblioteca("Pio Tamayo");
 const autores:Autor[] = crearAutores();
 // autores.forEach(autor => console.log(autor));
 
-// Crear los libros y las copias
-const libros = crearLibros()
-// libros.forEach(libro => console.log(libro));
-
 // Crear las copias de todos los libros
-crearCopias()
+const libros = crearCopiasDeLibros()
 
 //Mostrar Copias.
 const copias = pioTamayo.traerCopias();
-// copias.forEach(item => console.log(item))
+copias.forEach(item => console.log(item))
 
 // Crear Lectores
 const lectores = crearLectores();
 // lectores.forEach(item => console.log(item));
 
 // Afiliar lectores
-lectores.forEach(lector => {pioTamayo.agregarLector( lector )});
+// lectores.forEach(lector => {pioTamayo.agregarLector( lector )});
 
 // Prestar un libro
-const prestamo001 = pioTamayo.prestarLibro('V-9525660', '978-84-253-6179-1-copia001');
-const prestamo002 = pioTamayo.prestarLibro('V-9525669', '978-84-253-6179-7-copia003');
-console.log(prestamo001, prestamo002);
+// const prestamo001 = pioTamayo.prestarLibro('V-9525660', '978-84-253-6179-1-copia001');
+// const prestamo002 = pioTamayo.prestarLibro('V-9525669', '978-84-253-6179-7-copia003');
+// console.log(prestamo001, prestamo002);
 
 // Mostrar Prestamos
 // const prestamos = pioTamayo.mostrarPrestamos();
@@ -44,8 +40,8 @@ console.log(prestamo001, prestamo002);
 // console.log(JSON.stringify(pioTamayo))
 
 // Reparar una copia
-const reparar001 = pioTamayo.repararCopia('978-84-253-6179-6-copia003');
-console.log(reparar001);
+// const reparar001 = pioTamayo.repararCopia('978-84-253-6179-6-copia003');
+// console.log(reparar001);
 
 
 // Mostrar Registros de la biblioteca
@@ -86,7 +82,7 @@ function crearAutores(): Autor[] {
 
 }
 
-function crearLibros() {
+function crearCopiasDeLibros() {
     
     let cont = 0;
 
@@ -105,32 +101,24 @@ function crearLibros() {
     ];
 
 
-    return libreria.map(item => {
+    return libreria.forEach(item => {
 
-        let nuevoLibro =  new Libro(item.ISBN, item.nombreLibro, item.editorial, item.anio, autores[cont], item.tipoLibro)
+        pioTamayo.crearCopias(item.ISBN, item.nombreLibro, item.editorial, item.anio, autores[cont], item.tipoLibro);
         ++cont;
 
-        return nuevoLibro;
-    })
-
-
-
-    
-    
-
-
-
-}
-
-function crearCopias() {
-
-    libros.map(libro => {
-
-        pioTamayo.crearCopias(libro);
-
     })
 
 }
+
+// function crearCopias() {
+
+//     libros.map(libro => {
+
+//         pioTamayo.crearCopias(libro);
+
+//     })
+
+// }
 
 function crearLectores():Lector[] {
 
