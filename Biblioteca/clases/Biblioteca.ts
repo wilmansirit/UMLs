@@ -101,22 +101,22 @@ export class Biblioteca {
 
     // // }
 
-    // public repararCopia(idCopia: string): ResponsMessage {
+    public repararCopia(idCopia: string): ResponseMessage {
 
-    //     let copia = this.buscarCopiaPorId(idCopia);
+        let copia = this.buscarCopiaPorId(idCopia);
         
-    //     if (copia) {
-    //         if (copia.getEstatusCopia != "EN_BIBLIOTECA") return {message: 'La copia debe estar disponible'};
-    //         copia.cambiarEstatusCopia = "EN_REPARACION";
-    //         this.registros.push(copia);
-    //         return {message: `La copia de "${copia.getIdCopia}" de ${copia.getLibro.getNombreLibro} lista para enviar a reparar` };
-    //     } else {
-    //         return {message: `Revisar el número de copia ${idCopia}`};
-    //     }        
-    // }
+        if (copia) {
+            if (copia.getEstatusCopia != "EN_BIBLIOTECA") return {message: 'La copia debe estar disponible'};
+            copia.cambiarEstatusCopia = "EN_REPARACION";
+            this.registros.push(copia);
+            return {message: `La copia de "${copia.getIdCopia}" de ${copia.getNombreLibro} lista para enviar a reparar` };
+        } else {
+            return {message: `Revisar el número de copia ${idCopia}`};
+        }        
+    }
 
-    // public mostrarRegistros() {
-    //     this.registros.forEach(item => console.log(item))
-    // }
+    public mostrarRegistros() {
+        this.registros.forEach(item => console.log(item))
+    }
 
 }

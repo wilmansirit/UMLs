@@ -38,13 +38,13 @@ console.log(prestamo001, prestamo002);
 // console.log(JSON.stringify(pioTamayo))
 
 // Reparar una copia
-// const reparar001 = pioTamayo.repararCopia('978-84-253-6179-6-copia003');
-// console.log(reparar001);
+const reparar001 = pioTamayo.repararCopia('978-84-253-6179-6-CP003');
+console.log(reparar001);
 
 
 // Mostrar Registros de la biblioteca
 // console.log('********************* Registros de la Biblioteca *********************');
-// pioTamayo.mostrarRegistros();
+pioTamayo.mostrarRegistros();
 
 
 
