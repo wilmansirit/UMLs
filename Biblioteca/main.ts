@@ -16,19 +16,19 @@ const libros = crearCopiasDeLibros()
 
 //Mostrar Copias.
 const copias = pioTamayo.traerCopias();
-copias.forEach(item => console.log(item))
+// copias.forEach(item => console.log(item))
 
 // Crear Lectores
 const lectores = crearLectores();
-// lectores.forEach(item => console.log(item));
+lectores.forEach(item => console.log(JSON.stringify(item)));
 
 // Afiliar lectores
-// lectores.forEach(lector => {pioTamayo.agregarLector( lector )});
+lectores.forEach(lector => {pioTamayo.agregarLector( lector )});
 
 // Prestar un libro
-// const prestamo001 = pioTamayo.prestarLibro('V-9525660', '978-84-253-6179-1-copia001');
-// const prestamo002 = pioTamayo.prestarLibro('V-9525669', '978-84-253-6179-7-copia003');
-// console.log(prestamo001, prestamo002);
+const prestamo001 = pioTamayo.prestarLibro('V-9525660', '978-84-253-6179-1-CP001');
+const prestamo002 = pioTamayo.prestarLibro('V-9525669', '978-84-253-6179-7-CP003');
+console.log(prestamo001, prestamo002);
 
 // Mostrar Prestamos
 // const prestamos = pioTamayo.mostrarPrestamos();

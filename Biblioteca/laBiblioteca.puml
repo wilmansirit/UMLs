@@ -65,7 +65,7 @@ class Biblioteca {
     + buscarPrestamoPorId(string):Prestamo
     + agregarLector(Lector):string{}
     + crearCopias(Libro):Copia
-    + prestarLibro(string, string):Prestamo
+    + prestarLibro(string, string):ResponseMessage
     + traerCopias():Copia[]
     + mostrarRegistros(): void
 }

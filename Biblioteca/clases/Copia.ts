@@ -28,4 +28,12 @@ export class Copia extends Libro{
         return this.idCopia;
     }
 
+    get getEstatusCopia():EstatusCopia {
+        return this.estatusCopia;
+    }
+
+    set cambiarEstatusCopia(newEstatusCopia:EstatusCopia) {
+        this.estatusCopia = newEstatusCopia;
+    }
+
 }

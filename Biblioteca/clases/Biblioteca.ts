@@ -53,37 +53,37 @@ export class Biblioteca {
 
     }
 
-    // private buscarCopiaPorId(idCopia:string): Copia | null {
+    private buscarCopiaPorId(idCopia:string): Copia | null {
 
-    //     return this.copias.filter(copia =>  === idCopia)[0];
+        return this.copias.filter(copia =>  copia.getIdCopia === idCopia)[0];
 
-    // }
+    }
 
-    // public prestarLibro(idLector: string, idCopia:string): ResponseMessage {
+    public prestarLibro(idLector: string, idCopia:string): ResponseMessage {
 
-    //     const lector = this.buscarLectorPorId(idLector);
-    //     const copia = this.buscarCopiaPorId(idCopia);
+        const lector = this.buscarLectorPorId(idLector);
+        const copia = this.buscarCopiaPorId(idCopia);
 
-    //     if(lector && copia) {
+        if(lector && copia) {
 
-    //         const hoy = new Date();
-    //         const fechaDevolucion = new Date('09/30/2022');
+            const hoy = new Date();
+            const fechaDevolucion = new Date('09/30/2022');
 
-    //         if(copia.getEstatusCopia === 'EN_BIBLIOTECA'){
-    //             copia.cambiarEstatusCopia = 'PRESTADA';
-    //             const nuevoPrestamo = new Prestamo(lector, copia, hoy, fechaDevolucion);
-    //             this.prestamos.push(nuevoPrestamo);
-    //             this.registros.push(nuevoPrestamo);
+            if(copia.getEstatusCopia === 'EN_BIBLIOTECA'){
+                copia.cambiarEstatusCopia = 'PRESTADA';
+                const nuevoPrestamo = new Prestamo(lector, copia, hoy, fechaDevolucion);
+                this.prestamos.push(nuevoPrestamo);
+                this.registros.push(nuevoPrestamo);
 
-    //             return {message: `La copia de libro "${copia.getLibro.getNombreLibro}" fue asignada a "${lector.getNombreLector}"`}
+                return {message: `La copia de libro: "${copia.getNombreLibro}" fue asignada al lector: "${lector.getNombreLector}"`}
 
-    //         } else {
-    //             return {message: 'La copia no esta disponible'}
-    //         }
-    //     } else {
-    //         return {message: 'La copia no esta disponible'}
-    //     }
-    // }
+            } else {
+                return {message: 'La copia no esta disponible'}
+            }
+        } else {
+            return {message: 'La copia no esta disponible'}
+        }
+    }
 
     // public mostrarPrestamos(): Prestamo[] {
     //     return this.prestamos
