@@ -1,11 +1,16 @@
 @startuml "La biblioteca"
 
 class Libro {
-    - ISBN:string
-    - nombreLibro:string
-    - editorial:string
-    - anio:Date
-    - autor:string
+    # ISBN:string
+    # nombreLibro:string
+    # editorial:string
+    # anio:number
+    # autor:Autor
+    # tipoLibro: TipoLibro
+
+    getISBN(): string
+    getNombreLibro(): string
+
 }
 
 enum TipoLibro {
@@ -18,12 +23,11 @@ enum TipoLibro {
 class Autor {
     - nombreAutor:string
     - nacionalidad:string
-    - fechaNacimiento:Date
+    - fechaNacimiento:string
 }
 
-class Copia {
+class Copia extends Libro {
     - idCopia:string
-    - libro:Libro
     - estatusCopia:EstatusCopia
     + cambiarEstatusCopia(EstatusCopia):void
     + crearCopia(Libro):void
@@ -86,7 +90,6 @@ class Prestamo {
 
 TipoLibro <-- Libro: "Es de tipo"
 Autor "1" <-- "1" Libro: "ha sido escrito por"
-Libro <|-- Copia: "hereda de" 
 EstatusCopia "1" <-- "1" Copia: "tiene"
 Biblioteca "1" o-- "1..*" Lector: "congrega a"
 Biblioteca "1" *-- "1..*" Copia: "se compone de"

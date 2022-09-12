@@ -1,8 +1,6 @@
 import { Biblioteca } from "./clases/Biblioteca";
-import { Libreria } from "./clases/libreria";
 import { Autor } from "./clases/Autor";
 import { Lector } from "./clases/Lector";
-import { Copia } from "./clases/Copia";
 
 
 console.clear()
@@ -64,20 +62,20 @@ function crearAutores(): Autor[] {
 
     const listadoAutores =
     [
-        {nombre: 'Ildefonso Falcon', nacionalidad: 'Español',	fechaNacimiento: '03/09/1959'},
-        {nombre: 'Joël Dicker',	nacionalidad: 'Suizo', fechaNacimiento: '06/16/85'},
-        {nombre: 'Leonardo Padura', nacionalidad: 'Cubano', fechaNacimiento: '10/09/1955'},
-        {nombre: 'Víctor Hugo',	nacionalidad: 'Francesa',	fechaNacimiento: '02/26/1802'},
-        {nombre: 'Paulo Cohelo',	nacionalidad: 'Brasileño',	fechaNacimiento: '08/24/1947'},
-        {nombre: 'Gabriel García Márquez',	nacionalidad: 'Colombiano',	fechaNacimiento: '04/06/1927'},
-        {nombre: 'Antoine de Saint-Exupéry',	nacionalidad: 'Francesa',	fechaNacimiento: '06/26/1900'},
-        {nombre: 'Oscar Wilde',	nacionalidad: 'Irlandes',	fechaNacimiento: '10/16/1854'},
-        {nombre: 'Aldous Huxley',	nacionalidad: 'Estadounidense', fechaNacimiento:'07/26/1894'},
-        {nombre: 'Truman Capote',	nacionalidad: 'Estadounidense', fechaNacimiento:	'09/30/1924'}
+        {nombre: 'Ildefonso Falcon', nacionalidad: 'Español',	fechaNacimiento: '09/03/1959'},
+        {nombre: 'Joël Dicker',	nacionalidad: 'Suizo', fechaNacimiento: '16/06/85'},
+        {nombre: 'Leonardo Padura', nacionalidad: 'Cubano', fechaNacimiento: '09/10/1955'},
+        {nombre: 'Víctor Hugo',	nacionalidad: 'Francesa',	fechaNacimiento: '26/02/1802'},
+        {nombre: 'Paulo Cohelo',	nacionalidad: 'Brasileño',	fechaNacimiento: '24/08/1947'},
+        {nombre: 'Gabriel García Márquez',	nacionalidad: 'Colombiano',	fechaNacimiento: '06/04/1927'},
+        {nombre: 'Antoine de Saint-Exupéry',	nacionalidad: 'Francesa',	fechaNacimiento: '26/06/1900'},
+        {nombre: 'Oscar Wilde',	nacionalidad: 'Irlandes',	fechaNacimiento: '16/10/1854'},
+        {nombre: 'Aldous Huxley',	nacionalidad: 'Estadounidense', fechaNacimiento:'26/07/1894'},
+        {nombre: 'Truman Capote',	nacionalidad: 'Estadounidense', fechaNacimiento:	'30/09/1924'}
     ]
 
     return listadoAutores.map(item => {
-                return new Autor(item.nombre, item.nacionalidad, new Date(item.fechaNacimiento))
+                return new Autor(item.nombre, item.nacionalidad, item.fechaNacimiento);
             });
 
 }
@@ -86,7 +84,7 @@ function crearCopiasDeLibros() {
     
     let cont = 0;
 
-    const libreria: Libreria[] = 
+    const libreria: any[] = 
     [
         { ISBN: '978-84-253-6179-1', nombreLibro: 'Esclava de la libertad', editorial: 'GRIJALBO', anio: 2022, autor: 'Falcones, Ildefonso', tipoLibro: "NOVELA"},
         { ISBN: '978-84-253-6179-2', nombreLibro: 'El caso Alaska Sanders', editorial: 'ALFAGUARA', anio: 2020, autor: 'Dicker, Joël', tipoLibro: "NOVELA"},
@@ -109,16 +107,6 @@ function crearCopiasDeLibros() {
     })
 
 }
-
-// function crearCopias() {
-
-//     libros.map(libro => {
-
-//         pioTamayo.crearCopias(libro);
-
-//     })
-
-// }
 
 function crearLectores():Lector[] {
 

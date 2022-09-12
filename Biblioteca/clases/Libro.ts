@@ -3,12 +3,12 @@ import { TipoLibro } from "./TipoLibro";
 
  export class Libro {
     
-        protected ISBN:string;
-        protected nombreLibro:string;
-        protected editorial:string;
-        protected anio:number;
-        protected autor:Autor
-        protected tipoLibro:TipoLibro;
+        public ISBN:string;
+        public nombreLibro:string;
+        public editorial:string;
+        public anio:number;
+        public autor:Autor
+        public tipoLibro:TipoLibro;
 
     constructor(
         ISBN:string, 
