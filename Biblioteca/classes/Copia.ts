@@ -1,35 +1,32 @@
+import { Autor } from "./Autor";
 import { EstatusCopia } from "./EstatusCopia";
 import { Libro } from "./Libro";
+import { TipoLibro } from "./TipoLibro";
 
 
-export class Copia {
+export class Copia extends Libro{
     private idCopia:string; 
-    private libro:Libro;
     private estatusCopia:EstatusCopia;
 
-    constructor(libro:Libro, estatusCopia:EstatusCopia, numeroCopia:number){
-        this.libro = libro;
-        this.estatusCopia = estatusCopia;
-        this.idCopia = this.idGenerator(numeroCopia);
+    constructor(
+            ISBN:string, 
+            nombreLibro:string, 
+            editorial:string, 
+            anio:number, 
+            autor:Autor,
+            tipoLibro:TipoLibro,
+            estatusCopia:EstatusCopia,
+            idCopia:string
+        )
+        {
+            super(ISBN, nombreLibro, editorial, anio, autor, tipoLibro)
+            this.estatusCopia = estatusCopia;
+            this.idCopia = idCopia;
     }
 
     private idGenerator(id:number): string {
-        return `${this.libro.getISBN}-copia00${id}`;
+        return `${this.ISBN}-copia00${id}`;
     }
 
-    set cambiarEstatusCopia(newEstatusCopia:EstatusCopia) {
-        this.estatusCopia = newEstatusCopia;
-    }
 
-    get getIdCopia(): string {
-        return this.idCopia;
-    }
-
-    get getEstatusCopia(): string {
-        return this.estatusCopia;
-    }
-
-    get getLibro(): Libro {
-        return this.libro;
-    }
 }
