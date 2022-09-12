@@ -1,0 +1,1 @@
+export type TipoLibro = "NOVELA" | "POESIA" | "TEATRO" | "ENSAYO"
