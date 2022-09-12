@@ -1,0 +1,1 @@
+export type ResponsMessage = Record<string, string>
