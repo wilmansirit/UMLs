@@ -1,4 +1,5 @@
 import {Empleado} from "./Empleado"
+import { Empresa } from "./Empresa";
 
 export class EmpleadoSalarioFijo extends Empleado{
     
@@ -24,8 +25,8 @@ export class EmpleadoSalarioFijo extends Empleado{
         const anioActual = fechaIngreso.getFullYear();
         const anios = hoy.getFullYear() - anioActual;
         
-        if (anios >= 2) porcentaje = 0.05;
-        if (anios >= 5) porcentaje = 0.1; 
+        if (anios >= 2) porcentaje = Empresa.PORC_ADIC_2_A_5_ANIOS;
+        if (anios >= 5) porcentaje = Empresa.PORC_ADIC_MAS_DE_5_ANIOS; 
 
         return porcentaje;
     }
