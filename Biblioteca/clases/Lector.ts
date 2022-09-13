@@ -1,6 +1,9 @@
+import { Prestamo } from "./Prestamo";
+
 export class Lector {
     public idLector:string;
     private nombreLector:string;
+    private listaPrestamos: Prestamo[] = [];
 
     constructor(idLector:string, nombreLector:string){
         this.idLector = idLector;
@@ -14,4 +17,5 @@ export class Lector {
     get getNombreLector(): string {
         return this.nombreLector;
     }
+
 }

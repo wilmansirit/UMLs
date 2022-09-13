@@ -1,7 +1,6 @@
 import { Autor } from "./Autor"
 import { Copia } from "./Copia"
 import { Lector } from "./Lector"
-import { Libro } from "./Libro"
 import { Prestamo } from "./Prestamo"
 import { ResponseMessage } from "./ResponseMessage"
 import { TipoLibro } from "./TipoLibro"
@@ -74,8 +73,9 @@ export class Biblioteca {
                 const nuevoPrestamo = new Prestamo(lector, copia, hoy, fechaDevolucion);
                 this.prestamos.push(nuevoPrestamo);
                 this.registros.push(nuevoPrestamo);
+                
 
-                return {message: `La copia de libro: "${copia.getNombreLibro}" fue asignada al lector: "${lector.getNombreLector}"`}
+                return {message: `La copia ${copia.getIdCopia} del libro: "${copia.getNombreLibro}" fue asignada al lector: "${lector.getNombreLector}"`}
 
             } else {
                 return {message: 'La copia no esta disponible'}
@@ -85,9 +85,11 @@ export class Biblioteca {
         }
     }
 
-    // public mostrarPrestamos(): Prestamo[] {
-    //     return this.prestamos
-    // }
+    public mostrarPrestamos(): void {
+        this.prestamos.forEach(prestamo => {
+            console.log(JSON.stringify(prestamo));
+        })
+    }
 
     // // private calcularDiasDePrestamo():number {
 
@@ -97,9 +99,18 @@ export class Biblioteca {
 
 
     // // }
-    // // private devolverLibro(Prestamo):string{ 
 
-    // // }
+    public devolverLibro(idCopia:string): ResponseMessage { 
+
+        const copiaDevuelta = this.copias.filter(item => item.getIdCopia === idCopia)[0];
+        if (!copiaDevuelta) return {message: 'Revise el numero de la copia..!'};
+
+        copiaDevuelta.cambiarEstatusCopia = 'EN_BIBLIOTECA'
+        this.prestamos =  this.prestamos.filter(item => item.getIdCopia != idCopia);
+
+        return {message: `La devolución de la copia ${idCopia} fue procesada correctamente`};
+
+    }
 
     public repararCopia(idCopia: string): ResponseMessage {
 

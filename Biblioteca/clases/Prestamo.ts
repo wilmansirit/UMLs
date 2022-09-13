@@ -15,4 +15,8 @@ export class Prestamo {
         this.fechaDevolucion = fechaDevolucion;
 
     }
+
+    get getIdCopia(): string {
+        return this.copia.getIdCopia;
+    }
 }

@@ -68,6 +68,7 @@ class Biblioteca {
     + prestarLibro(string, string):ResponseMessage
     + traerCopias():Copia[]
     + mostrarRegistros(): void
+    + mostrarPrestamos(): Prestamos[]
 }
 
 class Lector {
