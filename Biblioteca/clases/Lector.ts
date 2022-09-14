@@ -1,9 +1,9 @@
-import { Prestamo } from "./Prestamo";
+import { PrestamosPorLector } from "../prestamosPorLectorInteface";
 
 export class Lector {
     public idLector:string;
     private nombreLector:string;
-    private listaPrestamos: Prestamo[] = [];
+    private registroDePrestamos: PrestamosPorLector[] = [];
 
     constructor(idLector:string, nombreLector:string){
         this.idLector = idLector;
@@ -18,4 +18,21 @@ export class Lector {
         return this.nombreLector;
     }
 
+    ingresarPrestamo(prestamo:PrestamosPorLector){
+        this.registroDePrestamos.push(prestamo);
+    }
+
+    numeroDeCopiasBajoPrestamo(): number {
+
+        let numeroCopias = 0;
+
+        numeroCopias = this.registroDePrestamos.filter(prestamo => {
+
+            return prestamo.estatusCopia === 'PRESTADA';
+
+        }).length
+
+        return numeroCopias;
+
+    }
 }

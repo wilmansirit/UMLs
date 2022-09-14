@@ -1,3 +1,4 @@
+import { PrestamosPorLector } from "../prestamosPorLectorInteface"
 import { Autor } from "./Autor"
 import { Copia } from "./Copia"
 import { Lector } from "./Lector"
@@ -60,29 +61,38 @@ export class Biblioteca {
 
     public prestarLibro(idLector: string, idCopia:string): ResponseMessage {
 
-        const lector = this.buscarLectorPorId(idLector);
+        const lector = this.buscarLectorPorId(idLector)
         const copia = this.buscarCopiaPorId(idCopia);
 
-        if(lector && copia) {
-
-            const hoy = new Date();
-            const fechaDevolucion = new Date('09/30/2022');
-
-            if(copia.getEstatusCopia === 'EN_BIBLIOTECA'){
-                copia.cambiarEstatusCopia = 'PRESTADA';
-                const nuevoPrestamo = new Prestamo(lector, copia, hoy, fechaDevolucion);
-                this.prestamos.push(nuevoPrestamo);
-                this.registros.push(nuevoPrestamo);
-                
-
-                return {message: `La copia ${copia.getIdCopia} del libro: "${copia.getNombreLibro}" fue asignada al lector: "${lector.getNombreLector}"`}
-
-            } else {
-                return {message: 'La copia no esta disponible'}
-            }
-        } else {
-            return {message: 'La copia no esta disponible'}
+        if(!lector || !copia || copia.getEstatusCopia != "EN_BIBLIOTECA") {
+            return {message: 'La copia no esta disponible'} 
         }
+
+        if (lector.numeroDeCopiasBajoPrestamo() > this.NUMERO_MAX_COPIAS - 1) {
+            return {message: `La copia "${copia.getIdCopia}" no puede ser prestada. El lector "${lector.getIdLector}" excede el numero de prestamos`};
+        }
+
+        const hoy = new Date();
+        const fechaDevolucion = new Date('09/30/2022');
+
+        copia.cambiarEstatusCopia = 'PRESTADA';
+        const nuevoPrestamo = new Prestamo(lector, copia, hoy, fechaDevolucion);
+        this.prestamos.push(nuevoPrestamo);
+        this.registros.push(nuevoPrestamo);
+        
+        const prestamo:PrestamosPorLector = {
+                                            numeroCopia: idCopia,
+                                            nombreCopia: copia.getNombreLibro,
+                                            fechaPrestamo: hoy,
+                                            fechaDevolucion: fechaDevolucion,
+                                            estatusCopia: 'PRESTADA'
+        }
+
+        lector.ingresarPrestamo(prestamo)
+        
+
+        return {message: `La copia ${copia.getIdCopia} del libro: "${copia.getNombreLibro}" fue asignada al lector: "${lector.getNombreLector}"`}
+
     }
 
     public mostrarPrestamos(): void {

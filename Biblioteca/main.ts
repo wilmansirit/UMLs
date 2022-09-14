@@ -20,24 +20,36 @@ const copias = pioTamayo.traerCopias();
 
 // Crear Lectores
 const lectores = crearLectores();
+const scuicas = lectores[0];
 // lectores.forEach(item => console.log(JSON.stringify(item)));
 
 // Afiliar lectores
 lectores.forEach(lector => {pioTamayo.agregarLector( lector )});
 
+// Reparar una copia
+const reparar001 = pioTamayo.repararCopia('978-84-253-6179-6-CP001');
+// console.log(reparar001);
+
 // Prestar un libro
 const prestamo001 = pioTamayo.prestarLibro('V-9525660', '978-84-253-6179-1-CP001');
-const prestamo002 = pioTamayo.prestarLibro('V-9525669', '978-84-253-6179-7-CP003');
-console.log({prestamo001, prestamo002});
+const prestamo002 = pioTamayo.prestarLibro('V-9525660', '978-84-253-6179-1-CP002');
+const prestamo003 = pioTamayo.prestarLibro('V-9525660', '978-84-253-6179-1-CP003');
+const prestamo004 = pioTamayo.prestarLibro('V-9525660', '978-84-253-6179-2-CP003');
 
+// console.log(scuicas.numeroDeCopiasBajoPrestamo())
+console.log({prestamo001, prestamo002, prestamo003, prestamo004});
 
-pioTamayo.mostrarPrestamos();
+// console.log('********************* Mostrar Prestamos *********************');
+// pioTamayo.mostrarPrestamos();
 
 // Devolver una copia
 const devolver = pioTamayo.devolverLibro('978-84-253-6179-1-CP001');
 console.log(devolver);
+
+
 // Mostrar Prestamos de la biblioteca
-pioTamayo.mostrarPrestamos();
+// console.log('********************* Mostrar Prestamos *********************');
+// pioTamayo.mostrarPrestamos();
 
 // Mostrar
 
@@ -45,14 +57,14 @@ pioTamayo.mostrarPrestamos();
 // Mostrar Biblioteca
 // console.log(JSON.stringify(pioTamayo))
 
-// Reparar una copia
-const reparar001 = pioTamayo.repararCopia('978-84-253-6179-6-CP003');
-// console.log(reparar001);
+
 
 
 // Mostrar Registros de la biblioteca
 // console.log('********************* Registros de la Biblioteca *********************');
 // pioTamayo.mostrarRegistros();
+
+
 
 
 
