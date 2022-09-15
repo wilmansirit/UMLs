@@ -71,12 +71,18 @@ class Biblioteca {
     + mostrarPrestamos(): Prestamos[]
 }
 
-class Lector {
-    - idLector:string
-    - nombreLector:name
+class Persona {
+    # idPersona: string
+    # nombresApellidos: string
+    # edad: number
 
-    + getIdLector(): string
-    + getnombreLector():string
+    + getIdPersona():string
+    + getNombresApellidos():string
+}
+
+class Lector extends Persona{
+    - isSolvente: boolean
+    - registros:Registros[]
 }
 
 class Prestamo {
@@ -92,7 +98,7 @@ class Prestamo {
 TipoLibro <-- Libro: "Es de tipo"
 Autor "1" <-- "1" Libro: "ha sido escrito por"
 EstatusCopia "1" <-- "1" Copia: "tiene"
-Biblioteca "1" o-- "1..*" Lector: "congrega a"
+Biblioteca "1" *-- "1..*" Lector: "congrega a"
 Biblioteca "1" *-- "1..*" Copia: "se compone de"
 Biblioteca "1" *-- "1..*" Prestamo: "se compone de"
 
