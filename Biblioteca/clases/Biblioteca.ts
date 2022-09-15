@@ -1,4 +1,4 @@
-import { PrestamosPorLector } from "../prestamosPorLectorInteface"
+import { PrestamosPorLector, Registros } from "../prestamosPorLectorInteface"
 import { Autor } from "./Autor"
 import { Copia } from "./Copia"
 import { Lector } from "./Lector"
@@ -14,7 +14,7 @@ export class Biblioteca {
     private NUMERO_MAX_DIAS = 30
     private DIAS_DE_MULTA = 2
     private NUMERO_MAX_COPIAS = 3
-    private registros:any[] = [];
+    private registros:Registros[] = [];
     public nombreBiblioteca:string;
 
     private copias:Copia[] = [];
@@ -73,7 +73,7 @@ export class Biblioteca {
         }
 
         const hoy = new Date();
-        const fechaDevolucion = new Date('09/30/2022');
+        const fechaDevolucion = hoy;
 
         copia.cambiarEstatusCopia = 'PRESTADA';
         const nuevoPrestamo = new Prestamo(lector, copia, hoy, fechaDevolucion);
@@ -81,16 +81,15 @@ export class Biblioteca {
         this.registros.push(nuevoPrestamo);
         
         const prestamo:PrestamosPorLector = {
-                                            numeroCopia: idCopia,
+                                            idCopia: idCopia,
                                             nombreCopia: copia.getNombreLibro,
-                                            fechaPrestamo: hoy,
-                                            fechaDevolucion: fechaDevolucion,
+                                            fechaPrestamo: hoy.toLocaleDateString(),
+                                            fechaDevolucion: fechaDevolucion.toLocaleDateString(),
                                             estatusCopia: 'PRESTADA'
         }
 
-        lector.ingresarPrestamo(prestamo)
+        lector.solicitarPrestamo(prestamo)
         
-
         return {message: `La copia ${copia.getIdCopia} del libro: "${copia.getNombreLibro}" fue asignada al lector: "${lector.getNombreLector}"`}
 
     }
@@ -112,11 +111,13 @@ export class Biblioteca {
 
     public devolverLibro(idCopia:string): ResponseMessage { 
 
-        const copiaDevuelta = this.copias.filter(item => item.getIdCopia === idCopia)[0];
+        const copiaDevuelta = this.prestamos.filter(item => item.getIdCopia === idCopia)[0];
         if (!copiaDevuelta) return {message: 'Revise el numero de la copia..!'};
 
-        copiaDevuelta.cambiarEstatusCopia = 'EN_BIBLIOTECA'
+        copiaDevuelta.getCopia.cambiarEstatusCopia = 'EN_BIBLIOTECA';
         this.prestamos =  this.prestamos.filter(item => item.getIdCopia != idCopia);
+
+        copiaDevuelta.getLector.devolverPrestamo(idCopia);
 
         return {message: `La devolución de la copia ${idCopia} fue procesada correctamente`};
 

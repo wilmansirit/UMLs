@@ -1,4 +1,5 @@
 import { PrestamosPorLector } from "../prestamosPorLectorInteface";
+import { EstatusCopia } from "./EstatusCopia";
 
 export class Lector {
     public idLector:string;
@@ -18,7 +19,7 @@ export class Lector {
         return this.nombreLector;
     }
 
-    ingresarPrestamo(prestamo:PrestamosPorLector){
+    solicitarPrestamo(prestamo:PrestamosPorLector){
         this.registroDePrestamos.push(prestamo);
     }
 
@@ -33,6 +34,17 @@ export class Lector {
         }).length
 
         return numeroCopias;
+
+    }
+
+    devolverPrestamo(idCopia: string): void {
+
+        const registro = this.registroDePrestamos.filter(item => item.idCopia === idCopia)[0];
+
+        if(registro != undefined) {
+            registro.estatusCopia = 'DEVUELTA';
+            this.registroDePrestamos.push(registro);
+        }
 
     }
 }

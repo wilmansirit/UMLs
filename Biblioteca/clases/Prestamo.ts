@@ -19,4 +19,12 @@ export class Prestamo {
     get getIdCopia(): string {
         return this.copia.getIdCopia;
     }
+
+    get getLector(): Lector {
+        return this.lector;
+    }
+
+    get getCopia(): Copia {
+        return this.copia;
+    }
 }
