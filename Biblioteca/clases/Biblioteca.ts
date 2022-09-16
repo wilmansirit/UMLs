@@ -5,7 +5,6 @@ import { Lector } from "./Lector"
 import { Prestamo } from "./Prestamo"
 import { ResponseMessage } from "./ResponseMessage"
 import { TipoLibro } from "./TipoLibro"
-
  
 
 export class Biblioteca {
@@ -14,9 +13,9 @@ export class Biblioteca {
     private NUMERO_MAX_DIAS = 30
     private DIAS_DE_MULTA = 2
     private NUMERO_MAX_COPIAS = 3
-    private registros:Registros[] = [];
-    public nombreBiblioteca:string;
 
+    public nombreBiblioteca:string;
+    private registros:Registros[] = [];
     private copias:Copia[] = [];
     private prestamos:Prestamo[] = [];
     private lectores:Lector[] = [];
@@ -25,11 +24,10 @@ export class Biblioteca {
         this.nombreBiblioteca = nombreBiblioteca;
     }
 
-    public agregarLector(lector: Lector):ResponseMessage {
-
-        this.lectores.push(lector);
-        return {'message': "OK"};
-
+    public inscribirLector(id:string, nombreCompleto:string, edad:number):Lector {
+        const nuevoLector = new Lector(id, nombreCompleto, edad);
+        this.lectores.push( nuevoLector);
+        return nuevoLector;
     }
 
     public crearCopias(ISBN:string, nombreLibro:string, editorial:string, anio:number, autor:Autor, tipoLibro:TipoLibro): ResponseMessage {
@@ -49,7 +47,7 @@ export class Biblioteca {
 
     private buscarLectorPorId(idLector: string): Lector | null {
 
-        return this.lectores.filter(lector => lector.idLector === idLector)[0];
+        return this.lectores.filter(lector => lector.id === idLector)[0];
 
     }
 
@@ -68,8 +66,8 @@ export class Biblioteca {
             return {message: 'La copia no esta disponible'} 
         }
 
-        if (lector.numeroDeCopiasBajoPrestamo() > this.NUMERO_MAX_COPIAS - 1) {
-            return {message: `La copia "${copia.getIdCopia}" no puede ser prestada. El lector "${lector.getIdLector}" excede el numero de prestamos`};
+        if (lector.numeroCopias > this.NUMERO_MAX_COPIAS) {
+            return {message: `La copia "${copia.getIdCopia}" no puede ser prestada. El lector "${lector.id}" excede el numero de prestamos`};
         }
 
         const hoy = new Date();
@@ -78,7 +76,6 @@ export class Biblioteca {
         copia.cambiarEstatusCopia = 'PRESTADA';
         const nuevoPrestamo = new Prestamo(lector, copia, hoy, fechaDevolucion);
         this.prestamos.push(nuevoPrestamo);
-        this.registros.push(nuevoPrestamo);
         
         const prestamo:PrestamosPorLector = {
                                             idCopia: idCopia,
@@ -88,9 +85,7 @@ export class Biblioteca {
                                             estatusCopia: 'PRESTADA'
         }
 
-        lector.solicitarPrestamo(prestamo)
-        
-        return {message: `La copia ${copia.getIdCopia} del libro: "${copia.getNombreLibro}" fue asignada al lector: "${lector.getNombreLector}"`}
+        return {message: `La copia ${copia.getIdCopia} del libro: "${copia.getNombreLibro}" fue asignada al lector: "${lector.nombresApellidos}"`}
 
     }
 
@@ -109,19 +104,19 @@ export class Biblioteca {
 
     // // }
 
-    public devolverLibro(idCopia:string): ResponseMessage { 
+    // public devolverLibro(idCopia:string): ResponseMessage { 
 
-        const copiaDevuelta = this.prestamos.filter(item => item.getIdCopia === idCopia)[0];
-        if (!copiaDevuelta) return {message: 'Revise el numero de la copia..!'};
+    //     const copiaDevuelta = this.prestamos.filter(item => item.getIdCopia === idCopia)[0];
+    //     if (!copiaDevuelta) return {message: 'Revise el numero de la copia..!'};
 
-        copiaDevuelta.getCopia.cambiarEstatusCopia = 'EN_BIBLIOTECA';
-        this.prestamos =  this.prestamos.filter(item => item.getIdCopia != idCopia);
+    //     copiaDevuelta.getCopia.cambiarEstatusCopia = 'EN_BIBLIOTECA';
+    //     this.prestamos =  this.prestamos.filter(item => item.getIdCopia != idCopia);
 
-        copiaDevuelta.getLector.devolverPrestamo(idCopia);
+    //     copiaDevuelta.getLector.devolverPrestamo(idCopia);
 
-        return {message: `La devolución de la copia ${idCopia} fue procesada correctamente`};
+    //     return {message: `La devolución de la copia ${idCopia} fue procesada correctamente`};
 
-    }
+    // }
 
     public repararCopia(idCopia: string): ResponseMessage {
 
@@ -130,7 +125,8 @@ export class Biblioteca {
         if (copia) {
             if (copia.getEstatusCopia != "EN_BIBLIOTECA") return {message: 'La copia debe estar disponible'};
             copia.cambiarEstatusCopia = "EN_REPARACION";
-            this.registros.push(copia);
+            // TODO
+            // this.registros.push(copia);
             return {message: `La copia de "${copia.getIdCopia}" de ${copia.getNombreLibro} lista para enviar a reparar` };
         } else {
             return {message: `Revisar el número de copia ${idCopia}`};

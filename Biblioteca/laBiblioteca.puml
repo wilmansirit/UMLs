@@ -54,21 +54,21 @@ class Biblioteca {
     - copias[]:Copia
     - prestamos[]:Prestamo
     - lectores[]:Lector
-    - registros[]:any
-
     - devolverLibro(Prestamo):string{}
     - calcularDiasDePrestamo():number
     - calcularMulta():number
 
-    - buscarLectorPorId(string):Lector
-    - buscarCopiaPorId(string):Copia
-    + buscarPrestamoPorId(string):Prestamo
     + agregarLector(Lector):string{}
     + crearCopias(Libro):Copia
-    + prestarLibro(string, string):ResponseMessage
     + traerCopias():Copia[]
-    + mostrarRegistros(): void
+    - buscarLectorPorId(string):Lector
+    - buscarCopiaPorId(string):Copia
+    + prestarLibro(string, string):ResponseMessage
     + mostrarPrestamos(): Prestamos[]
+    + devolverLibro(idCopia:string): ResponseMessage 
+    + repararCopia(idCopia: string): ResponseMessage
+    + mostrarRegistros(): void
+    + buscarPrestamoPorId(string):Prestamo
 }
 
 class Persona {
@@ -81,17 +81,22 @@ class Persona {
 }
 
 class Lector extends Persona{
-    - isSolvente: boolean
+    - estaSolvente: boolean
     - registros:Registros[]
+    - _numeroCopias: number;
+
+    + numeroCopias(): number
+    + actualizarNumeroCopias(number)
+
 }
 
 class Prestamo {
+    - idPrestamo:string
     - lector:Lector
     - copia:Copia
     - fechaPrestamo:Date
     - fechaDevolucion:Date
 
-    + cambiarEstatusCopia(EstatusCopia): void
     + idGenerator(string):string
 }
 

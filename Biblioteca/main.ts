@@ -1,50 +1,41 @@
 import { Biblioteca } from "./clases/Biblioteca";
 import { Autor } from "./clases/Autor";
-import { Lector } from "./clases/Lector";
+import { Persona } from "./clases/Persona";
 
 
-console.clear()
 // Crear una biblioteca
 const pioTamayo = new Biblioteca("Pio Tamayo");
 
-// Crear y mostrar Autores
-const autores:Autor[] = crearAutores();
-// autores.forEach(autor => console.log(autor));
-
-// Crear las copias de todos los libros
+// Instanciar Personas, Autores y crear copias de los libros
+const personas = crearPersonas();
+const autores = crearAutores();
 const libros = crearCopiasDeLibros()
 
-//Mostrar Copias.
-const copias = pioTamayo.traerCopias();
-// copias.forEach(item => console.log(item))
+// La biblioteca debe instanciar sus lectores lectores
+personas.forEach( persona => {
+    pioTamayo.inscribirLector(persona.id, persona.nombresApellidos, persona.edad);
+});
 
-// Crear Lectores
-const lectores = crearLectores();
-const scuicas = lectores[0];
-// lectores.forEach(item => console.log(JSON.stringify(item)));
 
-// Afiliar lectores
-lectores.forEach(lector => {pioTamayo.agregarLector( lector )});
 
 // Reparar una copia
-const reparar001 = pioTamayo.repararCopia('978-84-253-6179-6-CP001');
+// const reparar001 = pioTamayo.repararCopia('978-84-253-6179-6-CP001');
 // console.log(reparar001);
 
-// Prestar un libro
+// Prestamos de libro de la biblioteca
 const prestamo001 = pioTamayo.prestarLibro('V-9525660', '978-84-253-6179-1-CP001');
 const prestamo002 = pioTamayo.prestarLibro('V-9525660', '978-84-253-6179-1-CP002');
 const prestamo003 = pioTamayo.prestarLibro('V-9525660', '978-84-253-6179-1-CP003');
-const prestamo004 = pioTamayo.prestarLibro('V-9525660', '978-84-253-6179-2-CP003');
+const prestamo004 = pioTamayo.prestarLibro('V-9525660', '978-84-253-6179-1-CP003');
 
-// console.log(scuicas.numeroDeCopiasBajoPrestamo())
 console.log({prestamo001, prestamo002, prestamo003, prestamo004});
 
 // console.log('********************* Mostrar Prestamos *********************');
 // pioTamayo.mostrarPrestamos();
 
 // Devolver una copia
-const devolver = pioTamayo.devolverLibro('978-84-253-6179-1-CP001');
-console.log(devolver);
+// const devolver = pioTamayo.devolverLibro('978-84-253-6179-1-CP001');
+// console.log(devolver);
 
 
 // Mostrar Prestamos de la biblioteca
@@ -128,22 +119,21 @@ function crearCopiasDeLibros() {
 
 }
 
-function crearLectores():Lector[] {
+function crearPersonas():Persona[] {
 
-    const lectores = [
-        {idLector: 'V-9525660',nombresLector: 'SARA RAMONA CUICAS DE GARCIA'},
-        {idLector: 'V-9525661',nombresLector: 'CELIA ROSA GARCIA CUICAS'},
-        {idLector: 'V-9525662',nombresLector: 'MARLENYS COROMOTO GARCIA CUICA'},
-        {idLector: 'V-9525663',nombresLector: 'JOSE GREGORIO HERNANDEZ ZARRAGA'},
-        {idLector: 'V-9525664',nombresLector: 'ANGELA MARGARITA GARCIA DE SECO'},
-        {idLector: 'V-9525665',nombresLector: 'ELEIDA JOSEFINA CUICAS '},
-        {idLector: 'V-9525666',nombresLector: 'FRANCISCO JOSE GALIZ '},
-        {idLector: 'V-9525668',nombresLector: 'CLEOTILDE MARIA PEÑA '},
-        {idLector: 'V-9525669',nombresLector: 'ALEJANDRINA  URBINA FERNANDEZ'}
+    const personas = [
+        {id: 'V-9525660', nombres: 'SARA RAMONA CUICAS DE GARCIA', edad: 45},
+        {id: 'V-9525661', nombres: 'CELIA ROSA GARCIA CUICAS', edad: 45},
+        {id: 'V-9525662', nombres: 'MARLENYS COROMOTO GARCIA CUICA', edad: 45},
+        {id: 'V-9525663', nombres: 'JOSE GREGORIO HERNANDEZ ZARRAGA', edad: 45},
+        {id: 'V-9525664', nombres: 'ANGELA MARGARITA GARCIA DE SECO', edad: 45},
+        {id: 'V-9525665', nombres: 'ELEIDA JOSEFINA CUICAS ', edad: 45},
+        {id: 'V-9525666', nombres: 'FRANCISCO JOSE GALIZ', edad: 45},
+        {id: 'V-9525668', nombres: 'CLEOTILDE MARIA PEÑA', edad: 45},
+        {id: 'V-9525669', nombres: 'ALEJANDRINA  URBINA FERNANDEZ', edad: 45}
     ]
 
-    return lectores.map(item => {
-        return new Lector(item.idLector, item.nombresLector);
+    return personas.map(persona => {
+        return new Persona(persona.id, persona.nombres, persona.edad)
     });
-
-}
+} 

@@ -1,23 +1,23 @@
-export abstract class Persona {
-    private idPersona:string;
-    private nombresApellidos:string;
-    private edad:number;
+export class Persona {
+    private _id:string;
+    private _nombresApellidos:string;
+    private _edad:number;
 
     constructor(idPersona:string, nombresApellidos:string, edad:number) {
-        this.idPersona = idPersona;
-        this.nombresApellidos = nombresApellidos;
-        this.edad = edad;
+        this._id = idPersona;
+        this._nombresApellidos = nombresApellidos;
+        this._edad = edad;
     }
 
-    get getIdPersona(): string {
-        return this.idPersona;
+    get id(): string {
+        return this._id;
     }
 
-    get getNombresApellidos(): string {
-        return this.nombresApellidos;
+    get nombresApellidos(): string {
+        return this._nombresApellidos;
     }
 
-    get getEdad(): number {
-        return this.edad;
+    get edad(): number {
+        return this._edad;
     }
 }

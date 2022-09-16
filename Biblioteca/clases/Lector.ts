@@ -1,50 +1,56 @@
 import { PrestamosPorLector } from "../prestamosPorLectorInteface";
-import { EstatusCopia } from "./EstatusCopia";
+import { Persona } from "./Persona";
 
-export class Lector {
-    public idLector:string;
-    private nombreLector:string;
-    private registroDePrestamos: PrestamosPorLector[] = [];
+export class Lector extends Persona {
 
-    constructor(idLector:string, nombreLector:string){
-        this.idLector = idLector;
-        this.nombreLector = nombreLector;
+    private _estaSolvente:boolean;
+    private _registros: PrestamosPorLector[] = [];
+    private _numeroCopias: number;
+
+    constructor(idPersona:string, nombrePersona:string, edad:number){
+        super(idPersona, nombrePersona, edad);
+        this._estaSolvente = true;
+        this._numeroCopias = 0;
     }
 
-    get getIdLector(): string {
-        return this.idLector;
+    get estaSolvente(): boolean {
+        return this._estaSolvente;
     }
 
-    get getNombreLector(): string {
-        return this.nombreLector;
+    get registros(): PrestamosPorLector[] {
+        return this._registros;
     }
 
-    solicitarPrestamo(prestamo:PrestamosPorLector){
-        this.registroDePrestamos.push(prestamo);
+    get numeroCopias(): number {
+        return this._numeroCopias;
     }
 
-    numeroDeCopiasBajoPrestamo(): number {
-
-        let numeroCopias = 0;
-
-        numeroCopias = this.registroDePrestamos.filter(prestamo => {
-
-            return prestamo.estatusCopia === 'PRESTADA';
-
-        }).length
-
-        return numeroCopias;
-
+    set actualizarNumeroCopias(numeroCopias:number) {
+        this._numeroCopias = numeroCopias
     }
 
-    devolverPrestamo(idCopia: string): void {
+    // numeroDeCopiasBajoPrestamo(): number {
 
-        const registro = this.registroDePrestamos.filter(item => item.idCopia === idCopia)[0];
+    //     let numeroCopias = 0;
 
-        if(registro != undefined) {
-            registro.estatusCopia = 'DEVUELTA';
-            this.registroDePrestamos.push(registro);
-        }
+    //     numeroCopias = this.registroDePrestamos.filter(prestamo => {
 
-    }
+    //         return prestamo.estatusCopia === 'PRESTADA';
+
+    //     }).length
+
+    //     return numeroCopias;
+
+    // }
+
+    // devolverPrestamo(idCopia: string): void {
+
+    //     const registro = this.registroDePrestamos.filter(item => item.idCopia === idCopia)[0];
+
+    //     if(registro != undefined) {
+    //         registro.estatusCopia = 'DEVUELTA';
+    //         this.registroDePrestamos.push(registro);
+    //     }
+
+    // }
 }
