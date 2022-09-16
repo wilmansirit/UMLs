@@ -1,3 +1,4 @@
+
 export class Persona {
     private _id:string;
     private _nombresApellidos:string;

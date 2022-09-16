@@ -1,4 +1,4 @@
-import { PrestamosPorLector, Registros } from "../prestamosPorLectorInteface"
+import { Registros } from "../prestamosPorLectorInteface"
 import { Autor } from "./Autor"
 import { Copia } from "./Copia"
 import { Lector } from "./Lector"
@@ -15,7 +15,6 @@ export class Biblioteca {
     private NUMERO_MAX_COPIAS = 3
 
     public nombreBiblioteca:string;
-    private registros:Registros[] = [];
     private copias:Copia[] = [];
     private prestamos:Prestamo[] = [];
     private lectores:Lector[] = [];
@@ -64,6 +63,7 @@ export class Biblioteca {
 
         if(!lector || !copia) return {message: 'Revisar id de la Copia o id del Lector'};
         if(copia.getEstatusCopia != "EN_BIBLIOTECA") return {message: 'La copia no esta disponible'};
+        if(!lector.estaSolvente) return {message: 'El Lector no está solvente'};
         if (lector.numeroCopiasPrestadasActualmente() >= this.NUMERO_MAX_COPIAS) {
             return {message: `La copia "${copia.getIdCopia}" no puede ser prestada. El lector "${lector.id}" excede el numero de prestamos`};
         }
@@ -103,19 +103,21 @@ export class Biblioteca {
 
     // // }
 
-    // public devolverLibro(idCopia:string): ResponseMessage { 
+    public devolverLibro(idCopia:string): ResponseMessage { 
 
-    //     const copiaDevuelta = this.prestamos.filter(item => item.getIdCopia === idCopia)[0];
-    //     if (!copiaDevuelta) return {message: 'Revise el numero de la copia..!'};
+        const prestamo = this.prestamos.filter(item => item.getIdCopia === idCopia)[0];
+        if (!prestamo) return {message: 'Revise el numero de la copia..!'};
 
-    //     copiaDevuelta.getCopia.cambiarEstatusCopia = 'EN_BIBLIOTECA';
-    //     this.prestamos =  this.prestamos.filter(item => item.getIdCopia != idCopia);
+        // Cambiar el estatus de la copia en biblioteca y elimarlo de los registros de prestamos.
+        prestamo.getCopia.cambiarEstatusCopia = 'EN_BIBLIOTECA';
+        this.prestamos =  this.prestamos.filter(item => item.getIdCopia != idCopia);
 
-    //     copiaDevuelta.getLector.devolverPrestamo(idCopia);
+        // Actualizar registros en el lector
+        prestamo.getLector.devolverCopia(idCopia);
 
-    //     return {message: `La devolución de la copia ${idCopia} fue procesada correctamente`};
+        return {message: `La devolución de la copia ${idCopia} fue procesada correctamente`};
 
-    // }
+    }
 
     public repararCopia(idCopia: string): ResponseMessage {
 
@@ -130,10 +132,6 @@ export class Biblioteca {
         } else {
             return {message: `Revisar el número de copia ${idCopia}`};
         }        
-    }
-
-    public mostrarRegistros() {
-        this.registros.forEach(item => console.log(item))
     }
 
 }

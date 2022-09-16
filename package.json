@@ -11,8 +11,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/uuid": "^8.3.4",
     "nodemon": "^2.0.19",
-    "ts": "^0.2.2",
+    "ts": "^0.0.0",
     "ts-node": "^10.9.1"
+  },
+  "dependencies": {
+    "uuid": "^9.0.0"
   }
 }

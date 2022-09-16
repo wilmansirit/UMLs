@@ -33,11 +33,11 @@ const prestamo005 = pioTamayo.prestarLibro('V-9525663', '978-84-253-6179-5-CP001
 
 // console.log('********************* Mostrar Prestamos *********************');
 // pioTamayo.mostrarPrestamos();
-console.log(pioTamayo.buscarLectorPorId('V-9525663'))
+// console.log(pioTamayo.buscarLectorPorId('V-9525663'))
 
 // Devolver una copia
-// const devolver = pioTamayo.devolverLibro('978-84-253-6179-1-CP001');
-// console.log(devolver);
+const devolver = pioTamayo.devolverLibro('978-84-253-6179-1-CP001');
+console.log(devolver);
 
 
 // Mostrar Prestamos de la biblioteca
