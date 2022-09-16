@@ -2,7 +2,7 @@ import { Biblioteca } from "./clases/Biblioteca";
 import { Autor } from "./clases/Autor";
 import { Persona } from "./clases/Persona";
 
-
+console.clear();
 // Crear una biblioteca
 const pioTamayo = new Biblioteca("Pio Tamayo");
 
@@ -24,14 +24,16 @@ personas.forEach( persona => {
 
 // Prestamos de libro de la biblioteca
 const prestamo001 = pioTamayo.prestarLibro('V-9525660', '978-84-253-6179-1-CP001');
-const prestamo002 = pioTamayo.prestarLibro('V-9525660', '978-84-253-6179-1-CP002');
-const prestamo003 = pioTamayo.prestarLibro('V-9525660', '978-84-253-6179-1-CP003');
-const prestamo004 = pioTamayo.prestarLibro('V-9525660', '978-84-253-6179-1-CP003');
+const prestamo002 = pioTamayo.prestarLibro('V-9525660', '978-84-253-6179-2-CP001');
+const prestamo003 = pioTamayo.prestarLibro('V-9525660', '978-84-253-6179-3-CP001');
+const prestamo004 = pioTamayo.prestarLibro('V-9525660', '978-84-253-6179-4-CP001');
+const prestamo005 = pioTamayo.prestarLibro('V-9525663', '978-84-253-6179-5-CP001');
 
-console.log({prestamo001, prestamo002, prestamo003, prestamo004});
+// console.log({prestamo001, prestamo002, prestamo003, prestamo004, prestamo005});
 
 // console.log('********************* Mostrar Prestamos *********************');
 // pioTamayo.mostrarPrestamos();
+console.log(pioTamayo.buscarLectorPorId('V-9525663'))
 
 // Devolver una copia
 // const devolver = pioTamayo.devolverLibro('978-84-253-6179-1-CP001');

@@ -45,7 +45,7 @@ export class Biblioteca {
         return this.copias
     }
 
-    private buscarLectorPorId(idLector: string): Lector | null {
+    public buscarLectorPorId(idLector: string): Lector | null {
 
         return this.lectores.filter(lector => lector.id === idLector)[0];
 
@@ -62,11 +62,9 @@ export class Biblioteca {
         const lector = this.buscarLectorPorId(idLector)
         const copia = this.buscarCopiaPorId(idCopia);
 
-        if(!lector || !copia || copia.getEstatusCopia != "EN_BIBLIOTECA") {
-            return {message: 'La copia no esta disponible'} 
-        }
-
-        if (lector.numeroCopias > this.NUMERO_MAX_COPIAS) {
+        if(!lector || !copia) return {message: 'Revisar id de la Copia o id del Lector'};
+        if(copia.getEstatusCopia != "EN_BIBLIOTECA") return {message: 'La copia no esta disponible'};
+        if (lector.numeroCopiasPrestadasActualmente() >= this.NUMERO_MAX_COPIAS) {
             return {message: `La copia "${copia.getIdCopia}" no puede ser prestada. El lector "${lector.id}" excede el numero de prestamos`};
         }
 
@@ -77,13 +75,14 @@ export class Biblioteca {
         const nuevoPrestamo = new Prestamo(lector, copia, hoy, fechaDevolucion);
         this.prestamos.push(nuevoPrestamo);
         
-        const prestamo:PrestamosPorLector = {
+        lector.registrarPrestamoLector({
                                             idCopia: idCopia,
                                             nombreCopia: copia.getNombreLibro,
                                             fechaPrestamo: hoy.toLocaleDateString(),
                                             fechaDevolucion: fechaDevolucion.toLocaleDateString(),
                                             estatusCopia: 'PRESTADA'
-        }
+                                        });
+
 
         return {message: `La copia ${copia.getIdCopia} del libro: "${copia.getNombreLibro}" fue asignada al lector: "${lector.nombresApellidos}"`}
 

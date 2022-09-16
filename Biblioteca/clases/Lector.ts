@@ -1,32 +1,32 @@
 import { PrestamosPorLector } from "../prestamosPorLectorInteface";
 import { Persona } from "./Persona";
 
+
 export class Lector extends Persona {
 
     private _estaSolvente:boolean;
-    private _registros: PrestamosPorLector[] = [];
-    private _numeroCopias: number;
+    private _prestamos: PrestamosPorLector[] = [];
 
     constructor(idPersona:string, nombrePersona:string, edad:number){
         super(idPersona, nombrePersona, edad);
         this._estaSolvente = true;
-        this._numeroCopias = 0;
     }
 
     get estaSolvente(): boolean {
         return this._estaSolvente;
     }
 
-    get registros(): PrestamosPorLector[] {
-        return this._registros;
+    get registrosPrestamosPorLector(): PrestamosPorLector[] {
+        return this._prestamos;
     }
 
-    get numeroCopias(): number {
-        return this._numeroCopias;
+    registrarPrestamoLector(prestamo:PrestamosPorLector) : void {
+        this._prestamos.push(prestamo);
     }
 
-    set actualizarNumeroCopias(numeroCopias:number) {
-        this._numeroCopias = numeroCopias
+    numeroCopiasPrestadasActualmente(): number {
+        return this.registrosPrestamosPorLector.filter(item => item.estatusCopia === 'PRESTADA').length
+
     }
 
     // numeroDeCopiasBajoPrestamo(): number {
