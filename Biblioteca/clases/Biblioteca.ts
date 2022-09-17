@@ -68,17 +68,20 @@ export class Biblioteca {
             return {message: `La copia "${copia.getIdCopia}" no puede ser prestada. El lector "${lector.id}" excede el numero de prestamos`};
         }
 
-        const hoy = new Date();
-        const fechaDevolucion = hoy;
+        // Calcular fechas de prestamos y de devolucion
+        const fechaPrestamo = new Date();
+        const fechaDevolucion = this.sumarDias(new Date(), 30);
+
+        console.log(fechaPrestamo.toLocaleDateString(), fechaDevolucion.toLocaleDateString())
 
         copia.cambiarEstatusCopia = 'PRESTADA';
-        const nuevoPrestamo = new Prestamo(lector, copia, hoy, fechaDevolucion);
+        const nuevoPrestamo = new Prestamo(lector, copia, fechaPrestamo, fechaDevolucion);
         this.prestamos.push(nuevoPrestamo);
         
         lector.registrarPrestamoLector({
                                             idCopia: idCopia,
                                             nombreCopia: copia.getNombreLibro,
-                                            fechaPrestamo: hoy.toLocaleDateString(),
+                                            fechaPrestamo: fechaPrestamo.toLocaleDateString(),
                                             fechaDevolucion: fechaDevolucion.toLocaleDateString(),
                                             estatusCopia: 'PRESTADA'
                                         });
@@ -133,5 +136,11 @@ export class Biblioteca {
             return {message: `Revisar el número de copia ${idCopia}`};
         }        
     }
+
+    private sumarDias(fecha:Date, dias:number): Date {
+        fecha.setDate(fecha.getDate() + dias);
+        return fecha;
+    }
+    
 
 }

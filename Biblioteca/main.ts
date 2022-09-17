@@ -42,7 +42,7 @@ console.log(devolver);
 
 // Mostrar Prestamos de la biblioteca
 // console.log('********************* Mostrar Prestamos *********************');
-// pioTamayo.mostrarPrestamos();
+pioTamayo.mostrarPrestamos();
 
 // Mostrar
 

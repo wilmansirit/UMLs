@@ -31,13 +31,14 @@ export class Lector extends Persona {
 
     devolverCopia(idCopia: string): void {
 
-        const copia = this._registrosDePrestamos.filter(item => item.idCopia === idCopia)[0];
-        this._registrosDePrestamos = this._registrosDePrestamos.filter(item => item.idCopia != idCopia);
+        const registro = this._registrosDePrestamos.filter(item => item.idCopia === idCopia)[0];
+        const index = this._registrosDePrestamos.indexOf(registro);
+        this._registrosDePrestamos.splice(index, 1)
 
         // Eliminar la copia del regitro de prestamos
-        if(copia != undefined) {
-            copia.estatusCopia = 'DEVUELTA';
-            this._registrosDePrestamos.push(copia);
+        if(registro != undefined) {
+            registro.estatusCopia = 'DEVUELTA';
+            this._registrosDePrestamos.push(registro);
         }
     }
 }
