@@ -4,14 +4,14 @@ import { Lector } from "./Lector";
 export class Prestamo {
     private lector:Lector;
     private copia:Copia;
-    private fechaPrestamo:Date;
-    private fechaDevolucion:Date
+    private _fechaPrestamo:Date;
+    private _fechaDevolucion:Date
 
     constructor(lector:Lector, copia:Copia, fechaPrestamo:Date, fechaDevolucion:Date) {
         this.lector = lector;
         this.copia = copia;
-        this.fechaPrestamo = fechaPrestamo;
-        this.fechaDevolucion = fechaDevolucion;
+        this._fechaPrestamo = fechaPrestamo;
+        this._fechaDevolucion = fechaDevolucion;
     }
 
     get getIdCopia(): string {
@@ -25,4 +25,13 @@ export class Prestamo {
     get getCopia(): Copia {
         return this.copia;
     }
+
+    get fechaPrestamo(): Date {
+        return this._fechaPrestamo;
+    }
+    
+    get fechaDevolucion(): Date {
+        return this._fechaDevolucion;
+    }
+
 }

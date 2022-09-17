@@ -23,39 +23,35 @@ personas.forEach( persona => {
 // console.log(reparar001);
 
 // Prestamos de libro de la biblioteca
-const prestamo001 = pioTamayo.prestarLibro('V-9525660', '978-84-253-6179-1-CP001');
-const prestamo002 = pioTamayo.prestarLibro('V-9525660', '978-84-253-6179-2-CP001');
-const prestamo003 = pioTamayo.prestarLibro('V-9525660', '978-84-253-6179-3-CP001');
-const prestamo004 = pioTamayo.prestarLibro('V-9525660', '978-84-253-6179-4-CP001');
-const prestamo005 = pioTamayo.prestarLibro('V-9525663', '978-84-253-6179-5-CP001');
+const prestamo001 = pioTamayo.prestarLibro('V-9525660', '978-84-253-6179-1-CP001', '08/10/2022');
+const prestamo002 = pioTamayo.prestarLibro('V-9525660', '978-84-253-6179-2-CP001', '08/09/2022');
+const prestamo003 = pioTamayo.prestarLibro('V-9525662', '978-84-253-6179-3-CP001', '09/01/2022');
+const prestamo004 = pioTamayo.prestarLibro('V-9525663', '978-84-253-6179-4-CP001', '09/01/2022');
+const prestamo005 = pioTamayo.prestarLibro('V-9525664', '978-84-253-6179-5-CP001', '09/01/2022');
 
 // console.log({prestamo001, prestamo002, prestamo003, prestamo004, prestamo005});
 
 // console.log('********************* Mostrar Prestamos *********************');
 // pioTamayo.mostrarPrestamos();
-// console.log(pioTamayo.buscarLectorPorId('V-9525663'))
+// console.log(pioTamayo.buscarLectorPorId('V-9525660'))
 
 // Devolver una copia
-const devolver = pioTamayo.devolverLibro('978-84-253-6179-1-CP001');
-console.log(devolver);
+const devolver002 = pioTamayo.devolverLibro('978-84-253-6179-1-CP001');
+// const devolver001 = pioTamayo.devolverLibro('978-84-253-6179-2-CP001');
+
+// console.log(devolver001, devolver002);
+console.log(pioTamayo.buscarLectorPorId('V-9525660'))
 
 
 // Mostrar Prestamos de la biblioteca
 // console.log('********************* Mostrar Prestamos *********************');
-pioTamayo.mostrarPrestamos();
+// pioTamayo.mostrarPrestamos();
 
 // Mostrar
 
 
 // Mostrar Biblioteca
 // console.log(JSON.stringify(pioTamayo))
-
-
-
-
-// Mostrar Registros de la biblioteca
-// console.log('********************* Registros de la Biblioteca *********************');
-// pioTamayo.mostrarRegistros();
 
 
 

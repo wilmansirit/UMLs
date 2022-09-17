@@ -5,6 +5,7 @@ import { Persona } from "./Persona";
 export class Lector extends Persona {
 
     private _estaSolvente:boolean;
+    private _multadoHastaEl:Date = new Date('01/01/1900');
     private _registrosDePrestamos: PrestamosPorLector[] = [];
 
     constructor(idPersona:string, nombrePersona:string, edad:number){
@@ -14,6 +15,18 @@ export class Lector extends Persona {
 
     get estaSolvente(): boolean {
         return this._estaSolvente;
+    }
+
+    set estaSolvente(estatus) {
+        this._estaSolvente = estatus;
+    }
+
+    get multadoHastaEl():Date {
+        return this._multadoHastaEl;
+    }
+
+    set multadoHastaEl(fecha:Date) {
+        this._multadoHastaEl = fecha;
     }
 
     get registrosPrestamosPorLector(): PrestamosPorLector[] {
