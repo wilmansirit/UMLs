@@ -1,4 +1,3 @@
-import { Registros } from "../prestamosPorLectorInteface";
 import { Autor } from "./Autor";
 import { Copia } from "./Copia";
 import { Lector } from "./Lector";
@@ -86,7 +85,7 @@ export class Biblioteca {
 
     // Calcular fechas de prestamos y de devolucion
     const fechaPrestamo = new Date(fechaDelPrestamo);
-    const fechaDevolucion = this.sumarDias(fechaPrestamo, this.NUMERO_MAX_DIAS);
+    const fechaMaxDevolucion = this.sumarDias(fechaPrestamo, this.NUMERO_MAX_DIAS);
 
     // Cambiar status de las copias
     copia.cambiarEstatusCopia = "PRESTADA";
@@ -96,7 +95,7 @@ export class Biblioteca {
       lector,
       copia,
       fechaPrestamo,
-      fechaDevolucion
+      fechaMaxDevolucion
     );
     this.prestamos.push(nuevoPrestamo);
 
@@ -104,7 +103,8 @@ export class Biblioteca {
       idCopia: idCopia,
       nombreCopia: copia.getNombreLibro,
       fechaPrestamo: fechaPrestamo.toLocaleDateString(),
-      fechaDevolucion: fechaDevolucion.toLocaleDateString(),
+      fechaMaxDevolucion: fechaMaxDevolucion.toLocaleDateString(),
+      fechaRealDevolucion: fechaMaxDevolucion.toLocaleDateString(),
       estatusCopia: "PRESTADA",
     });
 
@@ -119,8 +119,7 @@ export class Biblioteca {
     });
   }
 
-  private verificarSolvencia(prestamo: Prestamo) {
-      
+  private verificarSolvencia(prestamo: Prestamo) {      
       
       const today = new Date();
       
@@ -130,20 +129,19 @@ export class Biblioteca {
           prestamo.getLector.estaSolvente = false;
           const diasDeMulta = Math.abs(this.DIAS_DE_MULTA * diasRestantes);
           
-          // Multado has el dia...
-
-          if (prestamo.getLector.multadoHastaEl.getTime() < this.sumarDias(today, diasDeMulta).getTime()) {
-              prestamo.getLector.multadoHastaEl = this.sumarDias(today, diasDeMulta);            
+          // Se registra la fecha maxima de las multas cualquiera que haya sido escoge la fecha mayor 
+          const fechaMulta = new Date(prestamo.getLector.multadoHastaEl);
+          if (fechaMulta.getTime() < this.sumarDias(today, diasDeMulta).getTime()) {
+              prestamo.getLector.multadoHastaEl = this.sumarDias(today, diasDeMulta).toLocaleDateString();            
           }
-          console.log(prestamo.getLector.multadoHastaEl < this.sumarDias(today, diasDeMulta))
         }
         
   }
 
   public devolverLibro(idCopia: string): ResponseMessage {
-    const prestamo = this.prestamos.filter(
-      (item) => item.getIdCopia === idCopia
-    )[0];
+
+    const prestamo = this.prestamos.filter((item) => item.getIdCopia === idCopia)[0];
+
     if (!prestamo) return { message: "Revise el numero de la copia..!" };
 
     // Actualizar registros en el lector
@@ -152,13 +150,10 @@ export class Biblioteca {
 
     // Cambiar el estatus de la copia en biblioteca y elimarlo de los registros de prestamos.
     prestamo.getCopia.cambiarEstatusCopia = "EN_BIBLIOTECA";
-    this.prestamos = this.prestamos.filter(
-      (item) => item.getIdCopia != idCopia
-    );
+    this.prestamos = this.prestamos.filter((item) => item.getIdCopia != idCopia);
 
-    return {
-      message: `La devolución de la copia ${idCopia} fue procesada correctamente`,
-    };
+    return {message: `La devolución de la copia ${idCopia} fue procesada correctamente`};
+
   }
 
   public repararCopia(idCopia: string): ResponseMessage {
@@ -189,7 +184,7 @@ export class Biblioteca {
   public quitarMulta(lector:Lector):ResponseMessage {
 
     lector.estaSolvente =true;
-    lector.multadoHastaEl = new Date('12/31/1900');
+    lector.multadoHastaEl = '01/01/1900';
 
     return {message: 'El lector ya esta solvente'}
   }

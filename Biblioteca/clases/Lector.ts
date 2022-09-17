@@ -1,12 +1,12 @@
-import { PrestamosPorLector } from "../prestamosPorLectorInteface";
+import { Registro } from "./Registro.Interface";
 import { Persona } from "./Persona";
 
 
 export class Lector extends Persona {
 
     private _estaSolvente:boolean;
-    private _multadoHastaEl:Date = new Date('01/01/1900');
-    private _registrosDePrestamos: PrestamosPorLector[] = [];
+    private _multadoHastaEl:string = '01/01/1900';
+    private _registrosDePrestamos: Registro[] = [];
 
     constructor(idPersona:string, nombrePersona:string, edad:number){
         super(idPersona, nombrePersona, edad);
@@ -21,29 +21,29 @@ export class Lector extends Persona {
         this._estaSolvente = estatus;
     }
 
-    get multadoHastaEl():Date {
+    get multadoHastaEl():string {
         return this._multadoHastaEl;
     }
 
-    set multadoHastaEl(fecha:Date) {
+    set multadoHastaEl(fecha:string) {
         this._multadoHastaEl = fecha;
     }
 
-    get registrosPrestamosPorLector(): PrestamosPorLector[] {
+    get registrosPrestamosPorLector(): Registro[] {
         return this._registrosDePrestamos;
     }
 
-    registrarPrestamoLector(prestamo:PrestamosPorLector) : void {
-        this._registrosDePrestamos.push(prestamo);
+    registrarPrestamoLector(registro:Registro) : void {
+        this._registrosDePrestamos.push(registro);
     }
 
     numeroCopiasPrestadasActualmente(): number {
         return this.registrosPrestamosPorLector.filter(item => item.estatusCopia === 'PRESTADA').length
-
     }
 
     devolverCopia(idCopia: string): void {
 
+        const today = new Date();
         const registro = this._registrosDePrestamos.filter(item => item.idCopia === idCopia)[0];
         const index = this._registrosDePrestamos.indexOf(registro);
         this._registrosDePrestamos.splice(index, 1)
@@ -51,6 +51,7 @@ export class Lector extends Persona {
         // Eliminar la copia del regitro de prestamos
         if(registro != undefined) {
             registro.estatusCopia = 'DEVUELTA';
+            registro.fechaRealDevolucion = today.toLocaleDateString();
             this._registrosDePrestamos.push(registro);
         }
     }
