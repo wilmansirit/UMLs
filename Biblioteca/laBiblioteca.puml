@@ -30,7 +30,6 @@ class Copia extends Libro {
     - idCopia:string
     - estatusCopia:EstatusCopia
     + cambiarEstatusCopia(EstatusCopia):void
-    + crearCopia(Libro):void
     + getIdCopia(): string
     + getEstatusCopia(): string 
 }
@@ -39,7 +38,8 @@ enum EstatusCopia {
     EN_BIBLIOTECA,
     PRESTADA,
     CON_RETRASO,
-    EN_REPARACION
+    EN_REPARACION,
+    DEVUELTA
 }
 
 class Biblioteca {
@@ -54,39 +54,45 @@ class Biblioteca {
     - copias[]:Copia
     - prestamos[]:Prestamo
     - lectores[]:Lector
-    - devolverLibro(Prestamo):string{}
-    - calcularDiasDePrestamo():number
-    - calcularMulta():number
 
-    + agregarLector(Lector):string{}
+    + inscribirLector(string, string, number):void
     + crearCopias(Libro):Copia
     + traerCopias():Copia[]
     - buscarLectorPorId(string):Lector
     - buscarCopiaPorId(string):Copia
     + prestarLibro(string, string):ResponseMessage
     + mostrarPrestamos(): Prestamos[]
+    - verificarSolvencia(Prestamo):ResponseMessage
     + devolverLibro(idCopia:string): ResponseMessage 
     + repararCopia(idCopia: string): ResponseMessage
-    + mostrarRegistros(): void
-    + buscarPrestamoPorId(string):Prestamo
+    - sumarDias(Date, number):Date
+    + quitarMulta(Lector):ResposeMessage
+    
 }
 
 class Persona {
-    # idPersona: string
-    # nombresApellidos: string
-    # edad: number
+    # _id: string
+    # _nombresApellidos: string
+    # _edad: number
 
-    + getIdPersona():string
+    + getId():string
     + getNombresApellidos():string
+    + getEdad():number
 }
 
 class Lector extends Persona{
-    - estaSolvente: boolean
-    - registros:Registros[]
-    - _numeroCopias: number;
+    - _estaSolvente: boolean
+    - _registros:Registros[]
+    - _numeroCopias: number
 
-    + numeroCopias(): number
-    + actualizarNumeroCopias(number)
+    + getEstaSolvente():boolean
+    + setEstaSolvente(boolean):void
+    + getMultadoHastaEl():string
+    + setMultadoHastaEl(string):void
+    + getRegistrosPrestamosPorLector(): Registro[]
+    + registrarPrestamoLector(registro:Registro) : void
+    + numeroCopiasPrestadasActualmente(): number
+    + devolverCopia(idCopia: string): void 
 
 }
 
@@ -94,11 +100,25 @@ class Prestamo {
     - idPrestamo:string
     - lector:Lector
     - copia:Copia
-    - fechaPrestamo:Date
-    - fechaDevolucion:Date
+    - _fechaPrestamo:Date
+    - _fechaDevolucion:Date
 
-    + idGenerator(string):string
+    getgetIdCopia():string
+    getgetLector():Lector
+    getgetCopia():Copia
+    getfechaPrestamo():Date    
+    getfechaDevolucion():Date
 }
+
+interface Registro {
+    idCopia: string
+    nombreCopia: string
+    fechaPrestamo: string
+    fechaMaxDevolucion:string
+    fechaRealDevolucion:string
+    estatusCopia: EstatusCopia
+}
+
 
 TipoLibro <-- Libro: "Es de tipo"
 Autor "1" <-- "1" Libro: "ha sido escrito por"
@@ -106,5 +126,6 @@ EstatusCopia "1" <-- "1" Copia: "tiene"
 Biblioteca "1" *-- "1..*" Lector: "congrega a"
 Biblioteca "1" *-- "1..*" Copia: "se compone de"
 Biblioteca "1" *-- "1..*" Prestamo: "se compone de"
+Registro .. Lector
 
 @enduml

@@ -1,4 +1,4 @@
-import { Registro } from "./Registro.Interface";
+import { Registro } from "./Registro";
 import { Persona } from "./Persona";
 
 
@@ -17,7 +17,7 @@ export class Lector extends Persona {
         return this._estaSolvente;
     }
 
-    set estaSolvente(estatus) {
+    set estaSolvente(estatus:boolean) {
         this._estaSolvente = estatus;
     }
 
